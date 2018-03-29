@@ -1,0 +1,39 @@
+#!/bin/sh
+
+usage () {
+    echo "Usage: $0 -c CORE_FILE"
+    exit 1
+}
+
+
+PYTHON=python
+BASE_PROG=script/restore_word_unit_bccwj.py
+CORE_FILE=""
+
+while getopts c:h OPT
+do
+    case $OPT in
+	c)  CORE_FILE=$OPTARG
+	    ;;
+	h)  usage
+	    ;;
+	*) usage
+	    ;;
+    esac
+done
+shift `expr $OPTIND - 1`
+TARGET_FILES="ja_bccwj-ud-train.conllu ja_bccwj-ud-dev.conllu ja_bccwj-ud-test.conllu"
+
+if [ "$CORE_FILE" = "" ]; then
+    echo "No argments: $CORE_FILE"
+    usage
+fi
+if [ ! -f $CORE_FILE ]; then
+    echo "Not found: $CORE_FILE"
+    usage
+fi
+
+for FILE in $TARGET_FILES; do
+    echo $PYTHON $BASE_PROG $BBB$FILE $CORE_FILE -w $BBB$FILE.word
+    $PYTHON $BASE_PROG ./$FILE $CORE_FILE -w ./$FILE.word
+done
