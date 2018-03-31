@@ -7,7 +7,7 @@ The original sentences are from `Balanced Corpus of Contemporary Written Japanes
 # Introduction
 
 The Japanese UD treebank contains the sentences from BCCWJ [1]
-http://pj.ninjal.ac.jp/corpus_center/bccwj/en/ 
+http://pj.ninjal.ac.jp/corpus_center/bccwj/en/
 with BCCWJ-DepPara[2] annotation.
 
 The word units is based on Short Unit Word in BCCWJ [1].
@@ -27,9 +27,9 @@ The corpus is obtained by running the following command:
 where `BCCWJ_CORE_FILE` denotes the file of BCCWJ core file (core_SUW.txt)
 In order to run this command, you need Python.
 
-or 
+or
 
-The BCCWJ DVD edition purchaser can download the data with the original text 
+The BCCWJ DVD edition purchaser can download the data with the original text
 from https://bccwj-data.ninjal.ac.jp/mdl/
 
 ## Spliting
@@ -48,8 +48,8 @@ You are encouraged to cite the following paper when you refer to the
 Universal Dependencies Japanese Treebank.
 
 Asahara, M., Kanayama, H., Tanaka, T., Miyao, Y., Uematsu, S., Mori, S.,
-Matsumoto, Y., Omura, M., & Murawaki, Y. (2018). 
-Universal Dependencies Version 2 for Japanese. 
+Matsumoto, Y., Omura, M., & Murawaki, Y. (2018).
+Universal Dependencies Version 2 for Japanese.
 In LREC-2018.
 
 # Acknowledgments
@@ -73,7 +73,7 @@ through discussion and validation with
 - Sumire Uematsu
 - Yugo Murawaki
 
-This work was supported by JSPS KAKENHI Grants Numbers JP17H00917 
+This work was supported by JSPS KAKENHI Grants Numbers JP17H00917
 and is a project of the Center for Corpus Development, NINJAL.
 
 # License
@@ -91,21 +91,21 @@ Matsumoto, Y. (2016). Universal Dependencies for Japanese. In LREC-2016.
 Matsumoto, Y., Omura, M., & Murawaki, Y. (2018). Universal Dependencies Version
 2 for Japanese. In LREC-2018.
 
-=== Machine-readable metadata =================================================
-Data available since: UD v2.2
-License: CC BY-NC-SA 4.0 International
-Includes text: blank (the data is available only to the BCCWJ purchaser)
-Genre: newspaper, magazine, books, whitepaper, Yahoo! Answers, Yahoo! Blogs
-Lemmas: blank (the data is available only to the BCCWJ purchaser)
-UPOS: conversion from XPOS
-XPOS: blank (the data is available only to the BCCWJ purchaser)
-Features: 
-Relations: converted from BCCWJ-DepPara
-Contributors: Mai Omura; Asahara, Masayuki; Miyao, Yusuke; Tanaka, Takaaki; Kanayama, Hiroshi; Matsumoto, Yuji; Mori, Shinsuke; Uematsu, Sumire, Yugo Murawaki
-Contact: masayu-a@ninjal.ac.jp
-===============================================================================
-
 Changelog
 
 2018-03-28   v1.0
   * Initial release in Universal Dependencies.
+
+=== Machine-readable metadata =================================================
+Data available since: UD v2.2
+License: CC BY-NC-SA 4.0 International
+Includes text: no
+Genre: news nonfiction fiction blog web
+Lemmas: not available
+UPOS: converted from manual
+XPOS: not available
+Features: not available
+Relations: converted from manual
+Contributors: Omura, Mai; Asahara, Masayuki; Miyao, Yusuke; Tanaka, Takaaki; Kanayama, Hiroshi; Matsumoto, Yuji; Mori, Shinsuke; Uematsu, Sumire; Murawaki, Yugo
+Contact: masayu-a@ninjal.ac.jp
+===============================================================================
