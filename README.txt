@@ -84,7 +84,7 @@ See file LICENSE.txt
 
 [1] Maekawa, K., Yamazaki, M., Ogiso, T., Maruyama, T., Ogura, H., Kashino, W.,
 Koiso, H., Yamaguchi, M., Tanaka, M. & Den, Y. (2014). Balanced corpus of contemporary written Japanese. Language resources and evaluation, 48(2), 345-371.
-[2] Asahara, M., & Matsumoto, Y. (2016). Bccwj-deppara: A syntactic annotation treebank on the ÅeBalanced Corpus of Contemporary Written JapaneseÅf. In Proceedings of the 12th Workshop on Asian Language Resources (ALR12) (pp. 49-58).
+[2] Asahara, M., & Matsumoto, Y. (2016). Bccwj-deppara: A syntactic annotation treebank on the ‚ÄòBalanced Corpus of Contemporary Written Japanese‚Äô. In Proceedings of the 12th Workshop on Asian Language Resources (ALR12) (pp. 49-58).
 [3] Tanaka, T., Miyao, Y., Asahara, M., Uematsu, S., Kanayama, H., Mori, S., &
 Matsumoto, Y. (2016). Universal Dependencies for Japanese. In LREC-2016.
 [4] Asahara, M., Kanayama, H., Tanaka, T., Miyao, Y., Uematsu, S., Mori, S.,

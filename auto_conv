@@ -34,6 +34,6 @@ if [ ! -f $CORE_FILE ]; then
 fi
 
 for FILE in $TARGET_FILES; do
-    echo $PYTHON $BASE_PROG $BBB$FILE $CORE_FILE -w $BBB$FILE.word
-    $PYTHON $BASE_PROG ./$FILE $CORE_FILE -w ./$FILE.word
+    echo $PYTHON $BASE_PROG ./$FILE ./script/$FILE.diff $CORE_FILE -w ./$FILE.word
+    $PYTHON $BASE_PROG ./$FILE ./script/$FILE.diff $CORE_FILE -w ./$FILE.word
 done
