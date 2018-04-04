@@ -7,33 +7,33 @@
   <size>
     <total><sentences>57256</sentences><tokens>1265590</tokens><words>1265590</words><fused>0</fused></total>
   </size>
-  <lemmas unique="35130" /><!-- の, 、, 。, に, を, て, は, が, た, だ, 為る, と, [JSP], で, 居る -->
-  <forms unique="46144" /><!-- の, 、, に, 。, を, て, は, が, た, と, で, [JSP], し, も, 」 -->
+  <lemmas unique="0" /><!--  -->
+  <forms unique="0" /><!--  -->
   <fusions unique="0" /><!--  -->
   <!-- Statistics of universal POS tags. The comments show the most frequent lemmas. -->
   <tags unique="17">
-    <tag name="ADJ">27261</tag><!-- 無い, 良い, 多い, 高い, 可能, 同じ, 必要, 大きい, 強い, 大きな -->
-    <tag name="ADP">253872</tag><!-- の, に, を, は, が, と, で, も, から, や -->
-    <tag name="ADV">18514</tag><!-- どう, そう, こう, もう, 良く, 今, 未だ, 特に, 少し, 矢張り -->
-    <tag name="AUX">146240</tag><!-- た, だ, 為る, 居る, ます, です, れる, ない, 有る, 様 -->
-    <tag name="CCONJ">14331</tag><!-- が, と, ば, から, けれど, 及び, 又, ながら, し, そして -->
-    <tag name="DET">5308</tag><!-- 其の, 此の, 彼の -->
-    <tag name="INTJ">586</tag><!-- 有り難う, あっ, ああ, うん, 否, はい, いざ, えっ, おい, 今日は -->
-    <tag name="NOUN">322564</tag><!-- 事, 年, 御, 月, 為, 物, 日, 時, 人, 円 -->
-    <tag name="NUM">53901</tag><!-- 一, 零, 二, 三, 五, 四, 九, 六, 七, 八 -->
-    <tag name="PART">48953</tag><!-- 者, か, 的, 等, さん, 人, ね, よ, 化, 達 -->
-    <tag name="PRON">11349</tag><!-- 其れ, 私, 此れ, 何, 彼, 此処, 其処, 彼女, 僕, そんな -->
-    <tag name="PROPN">35132</tag><!-- 日本, 平成, トウキョウ, ■■, 中国, 米国, オオサカ, 北朝鮮, アメリカ, 韓国 -->
-    <tag name="PUNCT">156437</tag><!-- 、, 。, 」, 「, ・, ）, （, ，, ？, ！ -->
-    <tag name="SCONJ">41215</tag><!-- て, の -->
-    <tag name="SYM">2158</tag><!-- Ｗ, Ａ, ｂ, Ｇ, Ｆ, Ｅ, Ｃ, ｍ, Ｒ, Ｘ -->
-    <tag name="VERB">107989</tag><!-- 言う, 成る, 有る, 因る, 出来る, 思う, 見る, つく, 行う, 於く -->
-    <tag name="X">19780</tag><!-- [JSP], _ -->
+    <tag name="ADJ">27261</tag><!-- _ -->
+    <tag name="ADP">253872</tag><!-- _ -->
+    <tag name="ADV">18514</tag><!-- _ -->
+    <tag name="AUX">146240</tag><!-- _ -->
+    <tag name="CCONJ">14331</tag><!-- _ -->
+    <tag name="DET">5308</tag><!-- _ -->
+    <tag name="INTJ">586</tag><!-- _ -->
+    <tag name="NOUN">322564</tag><!-- _ -->
+    <tag name="NUM">53901</tag><!-- _ -->
+    <tag name="PART">48953</tag><!-- _ -->
+    <tag name="PRON">11349</tag><!-- _ -->
+    <tag name="PROPN">35132</tag><!-- _ -->
+    <tag name="PUNCT">156437</tag><!-- _ -->
+    <tag name="SCONJ">41215</tag><!-- _ -->
+    <tag name="SYM">2158</tag><!-- _ -->
+    <tag name="VERB">107989</tag><!-- _ -->
+    <tag name="X">19780</tag><!-- _ -->
   </tags>
   <!-- Statistics of features and values. The comments show the most frequent word forms. -->
   <feats unique="2">
-    <feat name="Foreign" value="Yes" upos="X">195</feat><!-- ｔｈｅ, ｆｏｒ, ｐｕｔ, ｕｐ, ｗａｓ, ｗｉｔｈ, Ｃｏｍｍｉｔｔｅｅ, Ｃｏｎｓｕｍｅｒ, Ｄｅｓｉｇｎ, Ｇｒｅａｔｅｒ -->
-    <feat name="Polarity" value="Neg" upos="ADJ,AUX,NOUN">12679</feat><!-- ない, なく, ん, なかっ, ず, なけれ, 不, 無, 非, ぬ -->
+    <feat name="Foreign" value="Yes" upos="X">195</feat><!-- _ -->
+    <feat name="Polarity" value="Neg" upos="ADJ,AUX,NOUN">12679</feat><!-- _ -->
   </feats>
   <!-- Statistics of universal dependency relations. -->
   <deps unique="23">
