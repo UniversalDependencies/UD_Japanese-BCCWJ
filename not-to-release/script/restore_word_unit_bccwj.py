@@ -120,9 +120,11 @@ def fill_blank_files(conll_file, base_file, restore_data, is_full, writer):
                     if dnum in nmap:
                         dnum = nmap[dnum]
                     writer.write(
-                        u"\t".join([
-                            unicode(rnum)
-                        ] + rows[1:6] + [unicode(dnum)] + rows[7:]).encode("utf-8") + "\n"
+                        u"\t".join(
+                            [
+                                unicode(rnum)
+                            ] + rows[1:6] + [unicode(dnum)] + rows[7:9] + [u"|".join(nfes)
+                        ]).encode("utf-8") + "\n"
                     )
                 else:
                     writer.write(u"\t".join(rows[:9] + [u"|".join(nfes)]).encode("utf-8") + "\n")

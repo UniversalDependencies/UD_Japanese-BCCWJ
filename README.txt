@@ -21,11 +21,17 @@ stripped off due to the license issue.
 The corpus is obtained by running the following command:
 
 ```
-./autoconv -c BCCWJ_CORE_FILE
+./not-to-release/autoconv -c BCCWJ_CORE_FILE
 ```
 
 where `BCCWJ_CORE_FILE` denotes the file of BCCWJ core file (core_SUW.txt)
-In order to run this command, you need Python.
+These output is texts removed some words from original text, so you want to get original full text:
+
+```
+./not-to-release/autoconv -f -c BCCWJ_CORE_FILE
+```
+
+add `-f` flag. In order to run this command, you need Python.
 
 or
 
@@ -107,5 +113,6 @@ XPOS: not available
 Features: not available
 Relations: converted from manual
 Contributors: Omura, Mai; Asahara, Masayuki; Miyao, Yusuke; Tanaka, Takaaki; Kanayama, Hiroshi; Matsumoto, Yuji; Mori, Shinsuke; Uematsu, Sumire; Murawaki, Yugo
+Contributing: elsewhere
 Contact: masayu-a@ninjal.ac.jp
 ===============================================================================
