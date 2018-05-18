@@ -21,14 +21,14 @@ stripped off due to the license issue.
 The corpus is obtained by running the following command:
 
 ```
-./not-to-release/autoconv -c BCCWJ_CORE_FILE
+./merge/merge.sh -c BCCWJ_CORE_FILE
 ```
 
 where `BCCWJ_CORE_FILE` denotes the file of BCCWJ core file (core_SUW.txt)
 These output is texts removed some words from original text, so you want to get original full text:
 
 ```
-./not-to-release/autoconv -f -c BCCWJ_CORE_FILE
+./merge/merge.sh -f -c BCCWJ_CORE_FILE
 ```
 
 add `-f` flag. In order to run this command, you need Python.
