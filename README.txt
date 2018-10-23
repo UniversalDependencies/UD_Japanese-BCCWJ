@@ -25,13 +25,6 @@ The corpus is obtained by running the following command:
 ```
 
 where `BCCWJ_CORE_FILE` denotes the file of BCCWJ core file (core_SUW.txt)
-These output is texts removed some words from original text, so you want to get original full text:
-
-```
-./merge/merge.sh -f -c BCCWJ_CORE_FILE
-```
-
-add `-f` flag. In order to run this command, you need Python.
 
 or
 
@@ -94,16 +87,17 @@ Koiso, H., Yamaguchi, M., Tanaka, M. & Den, Y. (2014). Balanced corpus of contem
 [3] Tanaka, T., Miyao, Y., Asahara, M., Uematsu, S., Kanayama, H., Mori, S., &
 Matsumoto, Y. (2016). Universal Dependencies for Japanese. In LREC-2016.
 [4] Asahara, M., Kanayama, H., Tanaka, T., Miyao, Y., Uematsu, S., Mori, S.,
-Matsumoto, Y., Omura, M., & Murawaki, Y. (2018). Universal Dependencies Version
-2 for Japanese. In LREC-2018.
+Matsumoto, Y., Omura, M., & Murawaki, Y. (2018). Universal Dependencies Version 2 for Japanese. In LREC-2018.
 
 Changelog
 
-2018-03-28   v1.0
+2018-11-01   v2.3
+  * Update v2.2 to v2.3.
+2018-03-28   v2.2
   * Initial release in Universal Dependencies.
 
 === Machine-readable metadata =================================================
-Data available since: UD v2.2
+Data available since: UD v2.3
 License: CC BY-NC-SA 4.0 International
 Includes text: no
 Genre: news nonfiction fiction blog web

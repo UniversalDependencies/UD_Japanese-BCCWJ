@@ -5,60 +5,60 @@
        fused is the number of tokens that are split to two or more syntactic words
        The words and fused elements can be omitted if no token is split to smaller syntactic words. -->
   <size>
-    <total><sentences>57256</sentences><tokens>1265590</tokens><words>1265590</words><fused>0</fused></total>
+    <total><sentences>57109</sentences><tokens>1273287</tokens><words>1273287</words><fused>0</fused></total>
   </size>
   <lemmas unique="0" /><!--  -->
   <forms unique="0" /><!--  -->
   <fusions unique="0" /><!--  -->
   <!-- Statistics of universal POS tags. The comments show the most frequent lemmas. -->
   <tags unique="17">
-    <tag name="ADJ">27261</tag><!-- _ -->
-    <tag name="ADP">253872</tag><!-- _ -->
-    <tag name="ADV">18514</tag><!-- _ -->
-    <tag name="AUX">146240</tag><!-- _ -->
-    <tag name="CCONJ">14331</tag><!-- _ -->
-    <tag name="DET">5308</tag><!-- _ -->
-    <tag name="INTJ">586</tag><!-- _ -->
-    <tag name="NOUN">322564</tag><!-- _ -->
-    <tag name="NUM">53901</tag><!-- _ -->
-    <tag name="PART">48953</tag><!-- _ -->
-    <tag name="PRON">11349</tag><!-- _ -->
-    <tag name="PROPN">35132</tag><!-- _ -->
-    <tag name="PUNCT">156437</tag><!-- _ -->
-    <tag name="SCONJ">41215</tag><!-- _ -->
-    <tag name="SYM">2158</tag><!-- _ -->
-    <tag name="VERB">107989</tag><!-- _ -->
-    <tag name="X">19780</tag><!-- _ -->
+    <tag name="ADJ">27494</tag><!-- _ -->
+    <tag name="ADP">255976</tag><!-- _ -->
+    <tag name="ADV">18815</tag><!-- _ -->
+    <tag name="AUX">147400</tag><!-- _ -->
+    <tag name="CCONJ">16142</tag><!-- _ -->
+    <tag name="DET">5357</tag><!-- _ -->
+    <tag name="INTJ">915</tag><!-- _ -->
+    <tag name="NOUN">369172</tag><!-- _ -->
+    <tag name="NUM">58321</tag><!-- _ -->
+    <tag name="PART">7456</tag><!-- _ -->
+    <tag name="PRON">11557</tag><!-- _ -->
+    <tag name="PROPN">35938</tag><!-- _ -->
+    <tag name="PUNCT">165209</tag><!-- _ -->
+    <tag name="SCONJ">41512</tag><!-- _ -->
+    <tag name="SYM">2753</tag><!-- _ -->
+    <tag name="VERB">108692</tag><!-- _ -->
+    <tag name="X">578</tag><!-- _ -->
   </tags>
   <!-- Statistics of features and values. The comments show the most frequent word forms. -->
   <feats unique="2">
-    <feat name="Foreign" value="Yes" upos="X">195</feat><!-- _ -->
-    <feat name="Polarity" value="Neg" upos="ADJ,AUX,NOUN">12679</feat><!-- _ -->
+    <feat name="Foreign" value="Yes" upos="X">218</feat><!-- _ -->
+    <feat name="Polarity" value="Neg" upos="ADJ,AUX,NOUN">12793</feat><!-- _ -->
   </feats>
   <!-- Statistics of universal dependency relations. -->
   <deps unique="23">
-    <dep name="acl">31179</dep>
-    <dep name="advcl">29460</dep>
-    <dep name="advmod">20264</dep>
-    <dep name="amod">24327</dep>
-    <dep name="appos">5787</dep>
-    <dep name="aux">154878</dep>
-    <dep name="case">251250</dep>
-    <dep name="cc">14307</dep>
-    <dep name="compound">144036</dep>
-    <dep name="cop">5294</dep>
-    <dep name="dep">23599</dep>
-    <dep name="det">5303</dep>
-    <dep name="discourse">775</dep>
-    <dep name="iobj">29147</dep>
-    <dep name="mark">41086</dep>
-    <dep name="nmod">119109</dep>
-    <dep name="nsubj">23856</dep>
-    <dep name="nummod">51161</dep>
-    <dep name="obj">32018</dep>
-    <dep name="obl">45358</dep>
-    <dep name="punct">156122</dep>
-    <dep name="reparandum">18</dep>
-    <dep name="root">57256</dep>
+    <dep name="acl">31774</dep>
+    <dep name="advcl">29290</dep>
+    <dep name="advmod">19909</dep>
+    <dep name="amod">22306</dep>
+    <dep name="appos">5779</dep>
+    <dep name="aux">155776</dep>
+    <dep name="case">252997</dep>
+    <dep name="cc">14436</dep>
+    <dep name="compound">155860</dep>
+    <dep name="cop">5661</dep>
+    <dep name="dep">13914</dep>
+    <dep name="det">5352</dep>
+    <dep name="discourse">834</dep>
+    <dep name="iobj">18729</dep>
+    <dep name="mark">41368</dep>
+    <dep name="nmod">114654</dep>
+    <dep name="nsubj">51320</dep>
+    <dep name="nummod">53301</dep>
+    <dep name="obj">32127</dep>
+    <dep name="obl">28414</dep>
+    <dep name="punct">162360</dep>
+    <dep name="reparandum">17</dep>
+    <dep name="root">57109</dep>
   </deps>
 </treebank>
