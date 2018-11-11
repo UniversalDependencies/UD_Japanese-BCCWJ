@@ -3,10 +3,10 @@ commit d71d1b63fd448a8b098d4b5a0329f8da3f7413b0
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
 Date:   Sat Apr 21 19:02:58 2018 +0200
 Evaluating the following revision of UD_Japanese-BCCWJ:
-commit 10038bf4828bf4eb429c124985ec6aa6700f9956
+commit dcde8bad9a3cfdb618e1f714d8442c4c4c0ddda0
+Merge: 16a8844 eb504b3
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
-Date:   Sun Jun 17 23:56:17 2018 +0200
-Size: counted 1000000 of 1265590 words (nodes).
+Size: counted 1000000 of 1273287 words (nodes).
 Size: min(0, log((N/1000)**2)) = 13.8155105579643.
 Size: maximum value 13.815511 is for 1000000 words or more.
 Split: Found more than 10000 training words.
@@ -15,12 +15,12 @@ Split: Found at least 10000 test words.
 Lemmas: '_' is the most frequent lemma.
 Universal POS tags: 17 out of 17 found in the corpus.
 Universal POS tags: source of annotation (from README) factor is 0.8.
-Features: 12874 out of 1265590 total words have one or more features.
+Features: 13011 out of 1273287 total words have one or more features.
 Features: source of annotation (from README) factor is 0.4.
 Universal relations: 23 out of 37 found in the corpus.
 Universal relations: source of annotation (from README) factor is 0.8.
-Udapi: found 186343 bugs.
-Udapi: worst expected case (threshold) is one bug per 10 words. There are 1265590 words.
+Udapi: found 198912 bugs.
+Udapi: worst expected case (threshold) is one bug per 10 words. There are 1273287 words.
 Genres: found 5 out of 17 known.
 Availability: README does not say Includes text: yes
 Availability: '_' is the most frequent form.
