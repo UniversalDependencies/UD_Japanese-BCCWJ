@@ -1,9 +1,8 @@
 #!/bin/sh
 
 usage () {
-    echo "Usage: $0 [-f] -c CORE_FILE"
+    echo "Usage: $0 -c CORE_FILE"
     echo "-c: set the file of BCCWJ core file (core_SUW.txt, requirement)"
-    echo "-f: if you want to get originl full text."
     exit 1
 }
 
@@ -11,7 +10,6 @@ BASE_DIR=$(cd $(dirname $0); pwd)
 
 PYTHON=python
 BASE_PROG=$BASE_DIR/script/restore_word_unit_bccwj.py
-BASE_PROG2=$BASE_DIR/script/replace_multi_root.py
 CORE_FILE=""
 FULL_FLAG=false
 
@@ -19,8 +17,6 @@ while getopts c:hf OPT
 do
     case $OPT in
 	c)  CORE_FILE=$OPTARG
-	    ;;
-	f)  FULL_FLAG=true
 	    ;;
 	h)  usage
 	    ;;
@@ -41,17 +37,6 @@ if [ ! -f $CORE_FILE ]; then
 fi
 
 for FILE in $TARGET_FILES; do
-    if $FULL_FLAG; then
-        echo $PYTHON $BASE_PROG ./$FILE $BASE_DIR/script/$FILE.diff $CORE_FILE -w ./$FILE.mr.word -f
-        $PYTHON $BASE_PROG ./$FILE $BASE_DIR/script/$FILE.diff $CORE_FILE -w ./$FILE.mr.word -f
-    else
-        echo $PYTHON $BASE_PROG ./$FILE $BASE_DIR/script/$FILE.diff $CORE_FILE -w ./$FILE.word
-        $PYTHON $BASE_PROG ./$FILE $BASE_DIR/script/$FILE.diff $CORE_FILE -w ./$FILE.word
-    fi
+    echo $PYTHON $BASE_PROG ./$FILE $CORE_FILE -w ./$FILE.word -l ./merge/luw_mapping.txt
+    $PYTHON $BASE_PROG ./$FILE $CORE_FILE -w ./$FILE.word -l ./merge/luw_mapping.txt
 done
-
-if $FULL_FLAG; then
-    for FILE in $TARGET_FILES; do
-        $PYTHON $BASE_PROG2 ./$FILE.mr.word -w ./$FILE.word
-    done
-fi

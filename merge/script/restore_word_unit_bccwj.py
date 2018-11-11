@@ -5,30 +5,13 @@ restore token from BCCWJ core file.
 """
 
 import argparse
-import json
 
 
-def separate_document(conll_file):
-    """
-        separete by documents.
-    """
-    bstack, tid, prev_tid = [], None, None
-    rows = conll_file.next().rstrip("\r\n").decode("utf-8")
-    try:
-        while True:
-            assert rows.startswith(u"# sent_id =")
-            tid = rows.split(" ")[3].split("-")[0]
-            if prev_tid is not None and tid != prev_tid:
-                yield bstack
-                bstack = []
-            while rows != "":
-                bstack.append(rows)
-                rows = conll_file.next().rstrip("\r\n").decode("utf-8")
-            bstack.append(rows)
-            prev_tid = tid
-            rows = conll_file.next().rstrip("\r\n").decode("utf-8")
-    except StopIteration:
-        yield bstack
+from lib import (
+    separate_document, load_bccwj_core_file, conv_doc_id,
+    sepacete_sentence_for_bccwj, separate_conll_sentence,
+    is_spaceafter_yes, iterate_conll_and_bccwj
+)
 
 
 def separate_sentence(conll_file, restore_data):
@@ -48,61 +31,41 @@ def separate_sentence(conll_file, restore_data):
         cstack.append(rows)
 
 
+def _load_luw_map(luw_mapping_file):
+    """
+        write luw mapping for `restore_word_unit_bccwj`
+    """
+    luw_mapping = {}
+    for line in luw_mapping_file:
+        line = line.decode("utf-8").rstrip("\n").split("\t")
+        pos_label, pos_num = line[0], int(line[1])
+        luw_mapping[pos_num] = pos_label
+    return luw_mapping
+
+
 def _pre_convert(txt):
-    txt = txt.replace(u"　", u"[JSP]")
-    return txt if txt != "" else "_"
+    return txt.strip(u"　") if txt != "" else "_"
 
 
-def _conv_doc_id(rows):
-    tid = rows.split(" ")[3]
-    tid = tid.split("-")[0].split("_")
-    if len(tid) < 3:
-        return u"_".join(tid)
-    else:
-        return u"_".join(tid[1:])
-
-
-def fill_blank_files(conll_file, base_file, restore_data, is_full, writer):
+def fill_blank_files(conll_file, base_file, writer, luw_mapping):
     """
         fill word by bccwj file
     """
     for cnl in separate_document(conll_file):
         assert cnl[0].startswith("# sent_id =")
-        tid = _conv_doc_id(cnl[0])
+        tid = conv_doc_id(cnl[0])
         assert tid in base_file, tid
-        bdoc = iter(base_file[tid])
-        for rdata, sent_st in separate_sentence(cnl, restore_data):
-            if rdata is None:
-                sent = [(sss.split("\t"), bdoc.next(), False) for sss in sent_st[2:]]
-            else:
-                osent = ["ROOT"] + [sss.split("\t") for sss in sent_st[2:]]
-                sent = []
-                nlst = sorted([
-                    int(n) for n in rdata["old_pos"].keys() + rdata["inserted_token"].keys()
-                ])
-                for num in nlst:
-                    num = str(num)
-                    if num in rdata["old_pos"]:
-                        if num == "0":
-                            continue
-                        sss = osent[rdata["old_pos"][num]]
-                        sent.append((sss, bdoc.next(), False))
-                    elif num in rdata["inserted_token"]:
-                        sent.append((rdata["inserted_token"][num].split("\t"), bdoc.next(), True))
-                    else:
-                        raise ValueError, "the num is not found. {}:{}".format(tid, num)
+        conll_st = list(separate_conll_sentence(cnl))
+        bccwcj_st = sepacete_sentence_for_bccwj(iter(base_file[tid]))
+        for sent_st, bbb_st in iterate_conll_and_bccwj(conll_st, bccwcj_st):
+            sent = [(a.split("\t"), b) for a, b in zip(sent_st[2:], bbb_st)]
             writer.write(sent_st[0].encode("utf-8") + "\n")
-            writer.write(u"# text = {}".format(
-                u"".join([_pre_convert(s[1][-2]) for s in sent if is_full or not s[2]])
-            ).encode("utf-8") + "\n")
-            nmap = {}
-            if is_full and rdata is not None:
-                for pos, sss in enumerate(sent):
-                    if not sss[2]:
-                        nmap[int(sss[0][0])] = pos + 1
-            for rows, the_word, skipped in sent:
-                if not is_full and skipped:
-                    continue
+            writer.write(
+                u"# text = {}".format(u"".join([
+                    w[1][-2] + u"　" if is_spaceafter_yes(w[0]) else w[1][-2] for w in sent
+                ]).strip(u"　")).encode("utf-8") + "\n"
+            )
+            for rows, the_word in sent:
                 rows[1] = _pre_convert(the_word[-2])
                 rows[2] = _pre_convert(the_word[12])
                 rows[4] = the_word[16]
@@ -112,39 +75,17 @@ def fill_blank_files(conll_file, base_file, restore_data, is_full, writer):
                         item = u"JPYomi={}".format(
                             the_word[13] if the_word[13] != "" else "_"
                         )
+                    if item.startswith("LUWPOS"):
+                        luw_pos_num = int(item.split("=")[1])
+                        item = u"LUWPOS={}".format(luw_mapping[luw_pos_num])
                     nfes.append(item)
-                if is_full and rdata is not None and not skipped:
-                    rnum, dnum = int(rows[0]), int(rows[6])
-                    if rnum in nmap:
-                        rnum = nmap[rnum]
-                    if dnum in nmap:
-                        dnum = nmap[dnum]
-                    writer.write(
-                        u"\t".join(
-                            [
-                                unicode(rnum)
-                            ] + rows[1:6] + [unicode(dnum)] + rows[7:9] + [u"|".join(nfes)
-                        ]).encode("utf-8") + "\n"
-                    )
-                else:
-                    writer.write(u"\t".join(rows[:9] + [u"|".join(nfes)]).encode("utf-8") + "\n")
+                writer.write(u"\t".join(rows[:9] + [u"|".join(nfes)]).encode("utf-8") + "\n")
             writer.write("\n")
-
-
-def _load_base_file(base_file):
-    base_file_map = {}
-    for rows in base_file:
-        rows = rows.rstrip("\n").decode("utf-8").split("\t")
-        if rows[1] not in base_file_map:
-            base_file_map[rows[1]] = []
-        base_file_map[rows[1]].append(rows)
-    return base_file_map
 
 
 def _main():
     parser = argparse.ArgumentParser()
     parser.add_argument("conll_file", type=argparse.FileType("r"))
-    parser.add_argument("restore_file", type=argparse.FileType("r"))
     parser.add_argument(
         "bccwj_file", type=argparse.FileType("r"), help="BCCWJ core file (core_SUW.txt)"
     )
@@ -153,10 +94,16 @@ def _main():
         "-f", "--full-text", action="store_true",
         help="expansion text without considering multi-root"
     )
+    parser.add_argument(
+        "-l", "--luw-mapping-file", type=argparse.FileType("r"),
+        default="./luw_mapping.txt"
+    )
     args = parser.parse_args()
-    restore_data = json.load(args.restore_file)
-    base_file = _load_base_file(args.bccwj_file)
-    fill_blank_files(args.conll_file, base_file, restore_data, args.full_text, args.writer)
+    base_file = load_bccwj_core_file(args.bccwj_file)
+    luw_mapping = _load_luw_map(args.luw_mapping_file)
+    fill_blank_files(
+        args.conll_file, base_file, args.writer, luw_mapping
+    )
 
 
 if __name__ == '__main__':
