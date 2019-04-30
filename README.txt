@@ -25,6 +25,7 @@ The corpus is obtained by running the following command:
 ```
 
 where `BCCWJ_CORE_FILE` denotes the file of BCCWJ core file (core_SUW.txt)
+the script requires Python (2.x)
 
 or
 
@@ -35,8 +36,8 @@ from https://bccwj-data.ninjal.ac.jp/mdl/
 
 Each data set contains UD annotations for the following parts in BCCWJ
 
-training: annotation C, D, E subsets
-development: annotation B subset
+training: annotation B, C, D, E subsets
+development: annotation A subset
 test: annotation A subset
 
 See also https://github.com/masayu-a/BCCWJ-ANNOTATION-ORDER
@@ -91,6 +92,8 @@ Matsumoto, Y., Omura, M., & Murawaki, Y. (2018). Universal Dependencies Version 
 
 Changelog
 
+2019-05-01   v2.4
+  * Update v2.3 to v2.4.
 2018-11-01   v2.3
   * Update v2.2 to v2.3.
 2018-03-28   v2.2
