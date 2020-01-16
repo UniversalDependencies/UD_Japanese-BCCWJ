@@ -6,6 +6,9 @@
        The words and fused elements can be omitted if no token is split to smaller syntactic words. -->
   <size>
     <total><sentences>57109</sentences><tokens>1273287</tokens><words>1273287</words><fused>0</fused></total>
+    <train><sentences>40801</sentences><tokens>923761</tokens><words>923761</words><fused>0</fused></train>
+    <dev><sentences>8427</sentences><tokens>180767</tokens><words>180767</words><fused>0</fused></dev>
+    <test><sentences>7881</sentences><tokens>168759</tokens><words>168759</words><fused>0</fused></test>
   </size>
   <lemmas unique="0" /><!--  -->
   <forms unique="0" /><!--  -->
@@ -24,9 +27,9 @@
     <tag name="PART">7456</tag><!-- _ -->
     <tag name="PRON">11557</tag><!-- _ -->
     <tag name="PROPN">35938</tag><!-- _ -->
-    <tag name="PUNCT">165209</tag><!-- _ -->
+    <tag name="PUNCT">107005</tag><!-- _ -->
     <tag name="SCONJ">41512</tag><!-- _ -->
-    <tag name="SYM">2753</tag><!-- _ -->
+    <tag name="SYM">60957</tag><!-- _ -->
     <tag name="VERB">108692</tag><!-- _ -->
     <tag name="X">578</tag><!-- _ -->
   </tags>
@@ -37,27 +40,27 @@
   </feats>
   <!-- Statistics of universal dependency relations. -->
   <deps unique="23">
-    <dep name="acl">31774</dep>
-    <dep name="advcl">29290</dep>
-    <dep name="advmod">19909</dep>
-    <dep name="amod">22306</dep>
-    <dep name="appos">5779</dep>
-    <dep name="aux">155776</dep>
-    <dep name="case">252997</dep>
-    <dep name="cc">14436</dep>
-    <dep name="compound">155860</dep>
+    <dep name="acl">31794</dep>
+    <dep name="advcl">30221</dep>
+    <dep name="advmod">16940</dep>
+    <dep name="amod">22253</dep>
+    <dep name="aux">131946</dep>
+    <dep name="case">253009</dep>
+    <dep name="cc">16120</dep>
+    <dep name="compound">170525</dep>
     <dep name="cop">5661</dep>
-    <dep name="dep">13914</dep>
-    <dep name="det">5352</dep>
+    <dep name="dep">81623</dep>
+    <dep name="det">5356</dep>
     <dep name="discourse">834</dep>
-    <dep name="iobj">18729</dep>
-    <dep name="mark">41368</dep>
-    <dep name="nmod">114654</dep>
-    <dep name="nsubj">51320</dep>
-    <dep name="nummod">53301</dep>
-    <dep name="obj">32127</dep>
-    <dep name="obl">28414</dep>
-    <dep name="punct">162360</dep>
+    <dep name="dislocated">379</dep>
+    <dep name="iobj">15689</dep>
+    <dep name="mark">41369</dep>
+    <dep name="nmod">113787</dep>
+    <dep name="nsubj">55117</dep>
+    <dep name="nummod">53859</dep>
+    <dep name="obj">33059</dep>
+    <dep name="obl">29630</dep>
+    <dep name="punct">106990</dep>
     <dep name="reparandum">17</dep>
     <dep name="root">57109</dep>
   </deps>
