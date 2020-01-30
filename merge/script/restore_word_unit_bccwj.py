@@ -68,6 +68,8 @@ def fill_blank_files(conll_file, base_file, writer, luw_mapping):
             for rows, the_word in sent:
                 rows[1] = _pre_convert(the_word[-2])
                 rows[2] = _pre_convert(the_word[12])
+                if rows[2] == u"です":
+                    rows[2] = u"だ"
                 rows[4] = the_word[16]
                 nfes = []
                 for item in rows[9].split("|"):
