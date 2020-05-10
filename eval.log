@@ -3,9 +3,9 @@ commit d71d1b63fd448a8b098d4b5a0329f8da3f7413b0
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
 Date:   Sat Apr 21 19:02:58 2018 +0200
 Evaluating the following revision of UD_Japanese-BCCWJ:
-commit dee68ddd3b2f1a85985d7cb4f3df9e3293b63baf
+commit b3d2915017bc1305fb32d68d364f2161ca9be3ec
+Merge: f544faf a48c7bc
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
-Date:   Fri May 10 21:25:44 2019 +0200
 Size: counted 1000000 of 1273287 words (nodes).
 Size: min(0, log((N/1000)**2)) = 13.8155105579643.
 Size: maximum value 13.815511 is for 1000000 words or more.
