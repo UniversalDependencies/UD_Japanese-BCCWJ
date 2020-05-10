@@ -34,9 +34,8 @@
     <tag name="X">578</tag><!-- _ -->
   </tags>
   <!-- Statistics of features and values. The comments show the most frequent word forms. -->
-  <feats unique="3">
+  <feats unique="2">
     <feat name="Foreign" value="Yes" upos="X">218</feat><!-- _ -->
-    <feat name="NumType" value="Card" upos="NUM">58321</feat><!-- _ -->
     <feat name="Polarity" value="Neg" upos="ADJ,AUX,NOUN">12793</feat><!-- _ -->
   </feats>
   <!-- Statistics of universal dependency relations. -->
