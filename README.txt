@@ -101,7 +101,7 @@ Changelog
 
 === Machine-readable metadata =================================================
 Data available since: UD v2.2
-License: CC BY-NC-SA 4.0 International
+License: CC BY-NC-SA 4.0
 Includes text: no
 Genre: news nonfiction fiction blog web
 Lemmas: not available
