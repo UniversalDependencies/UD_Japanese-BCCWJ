@@ -25,7 +25,7 @@ The corpus is obtained by running the following command:
 ```
 
 where `BCCWJ_CORE_FILE` denotes the file of BCCWJ core file (core_SUW.txt)
-the script requires Python (2.x)
+the script requires Python (3.x)
 
 or
 
@@ -92,6 +92,8 @@ Matsumoto, Y., Omura, M., & Murawaki, Y. (2018). Universal Dependencies Version 
 
 Changelog
 
+2020-11-01   v2.7
+  * Update v2.4 to v2.7
 2019-05-01   v2.4
   * Update v2.3 to v2.4.
 2018-11-01   v2.3
