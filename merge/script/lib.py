@@ -133,6 +133,7 @@ def separate_document(conll_file):
             tid = conv_doc_id(line)
             if prev_tid is not None and tid != prev_tid:
                 yield prev_tid, bstack
+                sent_cnt = 0
                 bstack = []
             while line != "":
                 bstack.append(line)

@@ -42,6 +42,6 @@ $PYTHON $SUB_PROG $CORE_FILE
 
 for FILE in $TARGET_FILES; do
     ttt=`echo $FILE | sed -e 's/ja_bccwj-ud-\(.*\).conllu/\1/g'`
-    echo $PYTHON $BASE_PROG ./$FILE $CORE_FILE ./merge/${ttt}_pos.pkl -w ./$FILE.word -m ./merge/misc_mapping.pkl
-    $PYTHON $BASE_PROG ./$FILE $CORE_FILE ./merge/${ttt}_pos.pkl -w ./$FILE.word -m ./merge/misc_mapping.pkl
+    echo $PYTHON $BASE_PROG ./$FILE $CORE_FILE ./merge/${ttt}_pos.pkl ./merge/error_outout_${ttt}.txt -w ./$FILE.word -m ./merge/misc_mapping.pkl
+    $PYTHON $BASE_PROG ./$FILE $CORE_FILE ./merge/${ttt}_pos.pkl ./merge/error_outout_${ttt}.txt ./merge/${ttt}_order.txt -w ./$FILE.word -m ./merge/misc_mapping.pkl
 done

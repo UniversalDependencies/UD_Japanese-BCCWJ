@@ -8,6 +8,7 @@ import argparse
 import string
 import re
 import pickle as pkl
+import functools
 
 from lib import (
     separate_document, load_bccwj_core_file, conv_doc_id,
@@ -85,7 +86,6 @@ def _divide_sentence(cnl, tid, bccwj_conll_mapping):
     sentence_list, sent = [], []
     for cpos, item in enumerate(cnl):
         if cpos not in bccwj_conll_mapping[tid]:
-            print(item)
             assert item.startswith("# ") or item == ""
             if item == "":
                 sentence_list.append(sent)
@@ -119,7 +119,7 @@ def fill_blank_files(conll_file, base_data, bccwj_conll_mapping, misc_mapping, w
     """
         fill word by bccwj file
     """
-    for tid, cnl in separate_document(conll_file):
+    for tid, cnl in separate_document(iter(conll_file)):
         assert cnl[0].startswith("# sent_id =")
         assert tid in base_data, tid
         bccwj_data = base_data[tid]
@@ -148,21 +148,76 @@ def fill_blank_files(conll_file, base_data, bccwj_conll_mapping, misc_mapping, w
             writer.write("\n")
 
 
+def _separete_conll_to_sent(conll):
+    sent_list, sent = [], []
+    for line in conll:
+        if line == "\n":
+            sent_list.append(sent)
+            sent = []
+        else:
+            sent.append(line)
+    return sent_list
+
+
+def load_error_file(error_file):
+    sent_list = _separete_conll_to_sent(error_file)
+    errors = {}
+    for snt in sent_list:
+        sent_id = tuple(snt[0].split(" ")[-1].split("-"))
+        errors[sent_id] = snt
+    return errors
+
+
+def _sentid(lst, order=[]):
+    if len(lst) == 1:
+        sid, num = lst[0].rstrip("\n"), 1
+    else:
+        sid, num = lst
+    if len(sid.split("_")) > 2:
+        sid = "_".join(sid.split("_")[1:3])
+    else:
+        sid = "_".join(sid.split("_")[0:2])
+    return order[sid], int(num)
+
+
+def merge_remove_sentence(conll_file, error_sent, order_data):
+    conll_sent_list = _separete_conll_to_sent(conll_file)
+    conlls = {}
+    for snt in conll_sent_list:
+        sent_id = tuple(snt[0].split(" ")[-1].split("-"))
+        conlls[sent_id] = snt
+    result = []
+    for sid in sorted(list(conlls.keys()) + list(error_sent.keys()), key=functools.partial(_sentid, order=order_data)):
+        if sid in error_sent:
+            for ccc in error_sent[sid]:
+                result.append(ccc)
+        else:
+            for ccc in conlls[sid]:
+                result.append(ccc)
+        result.append("\n")
+    return result
+
+
 def _main():
     parser = argparse.ArgumentParser()
     parser.add_argument("conll_file", type=argparse.FileType("r"))
     parser.add_argument("bccwj_file_name", help="BCCWJ core file (core_SUW.txt)")
     parser.add_argument("bccwj_conll_mapping", type=argparse.FileType("rb"))
+    parser.add_argument("error_file", type=argparse.FileType("r"))
+    parser.add_argument("bccwj_order_file", type=argparse.FileType("r"))
     parser.add_argument("-w", "--writer", type=argparse.FileType("w"), default="-")
     parser.add_argument(
-        "-m", "--misc-file", type=argparse.FileType("rb"), default="./misc_mapping.pkl"
+        "-m", "--misc-file", type=argparse.FileType("rb"), default="./merged/misc_mapping.pkl"
     )
     args = parser.parse_args()
     base_data = load_bccwj_core_file(args.bccwj_file_name, load_pkl=True)
     misc_mapping = pkl.load(args.misc_file)
     bccwj_conll_mapping = pkl.load(args.bccwj_conll_mapping)
+    error_files = load_error_file(args.error_file)
+    order_data = dict([(l.rstrip("\n"), p) for p, l in enumerate(args.bccwj_order_file)])
+    conll_file = merge_remove_sentence(args.conll_file, error_files, order_data)
     fill_blank_files(
-        args.conll_file, base_data, bccwj_conll_mapping, misc_mapping, args.writer
+        conll_file, base_data, bccwj_conll_mapping, misc_mapping, args.writer
     )
 
 
