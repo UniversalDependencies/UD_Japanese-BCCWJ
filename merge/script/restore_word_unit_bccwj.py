@@ -115,16 +115,19 @@ def _expand_sentence(sent, bccwj_data):
     return "# text = {}\n".format(sent_s.strip("　"))
 
 
-def fill_blank_files(conll_file, base_data, bccwj_conll_mapping, misc_mapping, writer):
+def fill_blank_files(conll_file, base_data, bccwj_conll_mapping, misc_mapping, error_files, writer):
     """
         fill word by bccwj file
     """
+    error_keys = [(e[0], e[1].rstrip()) for e in error_files.keys()]
     for tid, cnl in separate_document(iter(conll_file)):
         assert cnl[0].startswith("# sent_id =")
         assert tid in base_data, tid
         bccwj_data = base_data[tid]
         sentence_list = _divide_sentence(cnl, tid, bccwj_conll_mapping)
         for sent in sentence_list:
+            if tuple(sent[0][0].split(" ")[-1].split("-")) in error_keys:
+                continue
             writer.write(sent[0][0] + "\n")
             writer.write(_expand_sentence(sent, bccwj_data))
             for conll, bccwj in sent[2:]:
@@ -217,7 +220,7 @@ def _main():
     order_data = dict([(l.rstrip("\n"), p) for p, l in enumerate(args.bccwj_order_file)])
     conll_file = merge_remove_sentence(args.conll_file, error_files, order_data)
     fill_blank_files(
-        conll_file, base_data, bccwj_conll_mapping, misc_mapping, args.writer
+        conll_file, base_data, bccwj_conll_mapping, misc_mapping, error_files, args.writer
     )
 
 
