@@ -10,8 +10,8 @@ BASE_DIR=$(cd $(dirname $0); pwd)
 
 PYTHON=python
 BASE_PROG=$BASE_DIR/script/restore_word_unit_bccwj.py
+SUB_PROG=$BASE_DIR/script/convert_core_suw_pkl.py
 CORE_FILE=""
-FULL_FLAG=false
 
 while getopts c:hf OPT
 do
@@ -36,7 +36,12 @@ if [ ! -f $CORE_FILE ]; then
     usage
 fi
 
+# create core_SUW.txt.pkl
+echo $PYTHON $SUB_PROG $CORE_FILE
+$PYTHON $SUB_PROG $CORE_FILE
+
 for FILE in $TARGET_FILES; do
-    echo $PYTHON $BASE_PROG ./$FILE $CORE_FILE -w ./$FILE.word -l ./merge/luw_mapping.txt
-    $PYTHON $BASE_PROG ./$FILE $CORE_FILE -w ./$FILE.word -l ./merge/luw_mapping.txt
+    ttt=`echo $FILE | sed -e 's/ja_bccwj-ud-\(.*\).conllu/\1/g'`
+    echo $PYTHON $BASE_PROG ./$FILE $CORE_FILE ./merge/${ttt}_pos.pkl ./merge/error_outout_${ttt}.txt -w ./$FILE.word -m ./merge/misc_mapping.pkl
+    $PYTHON $BASE_PROG ./$FILE $CORE_FILE ./merge/${ttt}_pos.pkl ./merge/error_outout_${ttt}.txt ./merge/${ttt}_order.txt -w ./$FILE.word -m ./merge/misc_mapping.pkl
 done
