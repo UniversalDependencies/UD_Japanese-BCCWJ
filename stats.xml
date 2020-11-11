@@ -5,63 +5,65 @@
        fused is the number of tokens that are split to two or more syntactic words
        The words and fused elements can be omitted if no token is split to smaller syntactic words. -->
   <size>
-    <total><sentences>57109</sentences><tokens>1273287</tokens><words>1273287</words><fused>0</fused></total>
-    <train><sentences>40801</sentences><tokens>923761</tokens><words>923761</words><fused>0</fused></train>
-    <dev><sentences>8427</sentences><tokens>180767</tokens><words>180767</words><fused>0</fused></dev>
-    <test><sentences>7881</sentences><tokens>168759</tokens><words>168759</words><fused>0</fused></test>
+    <total><sentences>57028</sentences><tokens>1250875</tokens><words>1250875</words><fused>0</fused></total>
+    <train><sentences>40740</sentences><tokens>906412</tokens><words>906412</words><fused>0</fused></train>
+    <dev><sentences>8417</sentences><tokens>177909</tokens><words>177909</words><fused>0</fused></dev>
+    <test><sentences>7871</sentences><tokens>166554</tokens><words>166554</words><fused>0</fused></test>
   </size>
   <lemmas unique="0" /><!--  -->
   <forms unique="0" /><!--  -->
   <fusions unique="0" /><!--  -->
   <!-- Statistics of universal POS tags. The comments show the most frequent lemmas. -->
   <tags unique="17">
-    <tag name="ADJ">27494</tag><!-- _ -->
-    <tag name="ADP">255976</tag><!-- _ -->
-    <tag name="ADV">18815</tag><!-- _ -->
-    <tag name="AUX">147400</tag><!-- _ -->
-    <tag name="CCONJ">16142</tag><!-- _ -->
-    <tag name="DET">5357</tag><!-- _ -->
+    <tag name="ADJ">26664</tag><!-- _ -->
+    <tag name="ADP">250543</tag><!-- _ -->
+    <tag name="ADV">18911</tag><!-- _ -->
+    <tag name="AUX">143333</tag><!-- _ -->
+    <tag name="CCONJ">5058</tag><!-- _ -->
+    <tag name="DET">6037</tag><!-- _ -->
     <tag name="INTJ">915</tag><!-- _ -->
-    <tag name="NOUN">369172</tag><!-- _ -->
-    <tag name="NUM">58321</tag><!-- _ -->
-    <tag name="PART">7456</tag><!-- _ -->
-    <tag name="PRON">11557</tag><!-- _ -->
-    <tag name="PROPN">35938</tag><!-- _ -->
-    <tag name="PUNCT">107005</tag><!-- _ -->
-    <tag name="SCONJ">41512</tag><!-- _ -->
-    <tag name="SYM">60957</tag><!-- _ -->
-    <tag name="VERB">108692</tag><!-- _ -->
-    <tag name="X">578</tag><!-- _ -->
+    <tag name="NOUN">365490</tag><!-- _ -->
+    <tag name="NUM">38868</tag><!-- _ -->
+    <tag name="PART">14799</tag><!-- _ -->
+    <tag name="PRON">11302</tag><!-- _ -->
+    <tag name="PROPN">35873</tag><!-- _ -->
+    <tag name="PUNCT">146174</tag><!-- _ -->
+    <tag name="SCONJ">56125</tag><!-- _ -->
+    <tag name="SYM">19159</tag><!-- _ -->
+    <tag name="VERB">111264</tag><!-- _ -->
+    <tag name="X">360</tag><!-- _ -->
   </tags>
   <!-- Statistics of features and values. The comments show the most frequent word forms. -->
   <feats unique="2">
-    <feat name="Foreign" value="Yes" upos="X">218</feat><!-- _ -->
-    <feat name="Polarity" value="Neg" upos="ADJ,AUX,NOUN">12793</feat><!-- _ -->
+    <feat name="Foreign" value="Yes" upos="NOUN">218</feat><!-- _ -->
+    <feat name="Polarity" value="Neg" upos="ADJ,AUX,NOUN,SCONJ">12767</feat><!-- _ -->
   </feats>
   <!-- Statistics of universal dependency relations. -->
-  <deps unique="23">
-    <dep name="acl">31794</dep>
-    <dep name="advcl">30221</dep>
-    <dep name="advmod">16940</dep>
-    <dep name="amod">22253</dep>
-    <dep name="aux">131946</dep>
-    <dep name="case">253009</dep>
-    <dep name="cc">16120</dep>
-    <dep name="compound">170525</dep>
-    <dep name="cop">5661</dep>
-    <dep name="dep">81623</dep>
-    <dep name="det">5356</dep>
-    <dep name="discourse">834</dep>
-    <dep name="dislocated">379</dep>
-    <dep name="iobj">15689</dep>
-    <dep name="mark">41369</dep>
-    <dep name="nmod">113787</dep>
-    <dep name="nsubj">55117</dep>
-    <dep name="nummod">53859</dep>
-    <dep name="obj">33059</dep>
-    <dep name="obl">29630</dep>
-    <dep name="punct">106990</dep>
+  <deps unique="25">
+    <dep name="acl">45391</dep>
+    <dep name="advcl">47554</dep>
+    <dep name="advmod">17847</dep>
+    <dep name="amod">3182</dep>
+    <dep name="aux">113454</dep>
+    <dep name="case">248691</dep>
+    <dep name="cc">5073</dep>
+    <dep name="ccomp">2861</dep>
+    <dep name="compound">165202</dep>
+    <dep name="cop">26786</dep>
+    <dep name="csubj">1568</dep>
+    <dep name="dep">10009</dep>
+    <dep name="det">6033</dep>
+    <dep name="discourse">404</dep>
+    <dep name="dislocated">1497</dep>
+    <dep name="fixed">21068</dep>
+    <dep name="mark">62968</dep>
+    <dep name="nmod">84589</dep>
+    <dep name="nsubj">45475</dep>
+    <dep name="nummod">34820</dep>
+    <dep name="obj">32585</dep>
+    <dep name="obl">70617</dep>
+    <dep name="punct">146156</dep>
     <dep name="reparandum">17</dep>
-    <dep name="root">57109</dep>
+    <dep name="root">57028</dep>
   </deps>
 </treebank>
