@@ -72,6 +72,8 @@ through discussion and validation with
 - Shinsuke Mori
 - Sumire Uematsu
 - Yugo Murawaki
+- Kaoru Ito
+- Taishi Chika
 
 This work was supported by JSPS KAKENHI Grants Numbers JP17H00917
 and is a project of the Center for Corpus Development, NINJAL.
