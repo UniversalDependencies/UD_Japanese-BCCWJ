@@ -94,6 +94,8 @@ Matsumoto, Y., Omura, M., & Murawaki, Y. (2018). Universal Dependencies Version 
 
 Changelog
 
+2021-05-01   v2.8
+  * Update v2.7 to v2.8
 2020-11-01   v2.7
   * Update v2.4 to v2.7
 2019-05-01   v2.4
