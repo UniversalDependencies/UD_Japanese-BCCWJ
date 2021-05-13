@@ -1,12 +1,12 @@
-Running the following version of tools/evaluate_treebank.pl:
-commit d71d1b63fd448a8b098d4b5a0329f8da3f7413b0
+Running the following version of UD tools:
+commit ca3b862e9e2871c76cd91bf78ffb089c0c60184d
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
-Date:   Sat Apr 21 19:02:58 2018 +0200
+Date:   Thu May 6 20:16:19 2021 +0200
 Evaluating the following revision of UD_Japanese-BCCWJ:
-commit 87ee7cddfad73fc4c018f4ee68051e91a0e638a5
-Merge: e9c68c8 1656265
+commit 353f76dccc6d03b2e4c6cb6aba95f5eac040706a
+Merge: 911bb54 e638014
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
-Size: counted 1000000 of 1250875 words (nodes).
+Size: counted 1000000 of 1253904 words (nodes).
 Size: min(0, log((N/1000)**2)) = 13.8155105579643.
 Size: maximum value 13.815511 is for 1000000 words or more.
 Split: Found more than 10000 training words.
@@ -15,12 +15,14 @@ Split: Found at least 10000 test words.
 Lemmas: '_' is the most frequent lemma.
 Universal POS tags: 17 out of 17 found in the corpus.
 Universal POS tags: source of annotation (from README) factor is 0.8.
-Features: 12985 out of 1250875 total words have one or more features.
+Features: 9072 out of 1253904 total words have one or more features.
 Features: source of annotation (from README) factor is 0.4.
-Universal relations: 25 out of 37 found in the corpus.
+Universal relations: 26 out of 37 found in the corpus.
 Universal relations: source of annotation (from README) factor is 0.8.
-Udapi: found 168408 bugs.
-Udapi: worst expected case (threshold) is one bug per 10 words. There are 1250875 words.
+Udapi:
+               TOTAL     190347
+Udapi: found 190347 bugs.
+Udapi: worst expected case (threshold) is one bug per 10 words. There are 1253904 words.
 Genres: found 5 out of 17 known.
 Availability: README does not say Includes text: yes
 Availability: '_' is the most frequent form.
@@ -38,7 +40,7 @@ Validity: 1
 (weight=0.0512820512820513) * (score{split}=1) = 0.0512820512820513
 (weight=0.0769230769230769) * (score{tags}=0.8) = 0.0615384615384615
 (weight=0.307692307692308) * (score{udapi}=0.01) = 0.00307692307692308
-(weight=0.0769230769230769) * (score{udeprels}=0.540540540540541) = 0.0415800415800416
-(TOTAL score=0.446512168276874) * (availability=0.1) * (validity=1) = 0.0446512168276874
+(weight=0.0769230769230769) * (score{udeprels}=0.562162162162162) = 0.0432432432432432
+(TOTAL score=0.448175369940076) * (availability=0.1) * (validity=1) = 0.0448175369940076
 STARS = 0
-UD_Japanese-BCCWJ	0.0446512168276874	0
+UD_Japanese-BCCWJ	0.0448175369940076	0
