@@ -16,6 +16,14 @@ CORE_SUW_COLUMN = [
     "語種", "品詞", "活用型", "活用形", "語形",
     "用法", "書字形", "書字形出現形", "原文文字列", "発音形出現形"
 ]
+CORE_LUW_COLUMN = [
+    "サブコーパス名", "サンプルID",
+    "出現形開始位置", "出現形終了位置", "文節",
+    "短長相違フラグ", "固定長フラグ", "可変長フラグ",
+    "語彙素", "語彙素読み", "語種", "品詞", "活用型", "活用形", "語形",
+    "書字形", "書字形出現形", "原文文字列", "発音形出現形", "連番",
+    "文字開始位置", "文字終了位置", "文頭ラベル"
+]
 NUMBER_ORTH = {
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
     '０', '１', '２', '３', '４', '５', '６', '７', '８', '９',
@@ -102,16 +110,19 @@ def conv_doc_id(conll):
         return "_".join(tid[1:])
 
 
-def load_bccwj_core_file(base_file_name, load_pkl=False):
+def load_bccwj_core_file(base_file_name, unit=None, load_pkl=False):
     """
         load bccwj core data
     """
     if load_pkl:
         return pkl.load(open(base_file_name + ".pkl", "rb"))
+    assert unit in ["suw", "luw"]
     base_file_map = {}
     with open(base_file_name, "r") as base_data:
         for rows in base_data:
-            rows = dict(zip(CORE_SUW_COLUMN, rows.rstrip("\n").split("\t")))
+            rows = dict(
+                zip({"suw": CORE_SUW_COLUMN, "luw": CORE_LUW_COLUMN}[unit], rows.rstrip("\n").split("\t"))
+            )
             if rows["サンプルID"] not in base_file_map:
                 base_file_map[rows["サンプルID"]] = []
             base_file_map[rows["サンプルID"]].append(rows)
@@ -133,7 +144,6 @@ def separate_document(conll_file):
             tid = conv_doc_id(line)
             if prev_tid is not None and tid != prev_tid:
                 yield prev_tid, bstack
-                sent_cnt = 0
                 bstack = []
             while line != "":
                 bstack.append(line)
