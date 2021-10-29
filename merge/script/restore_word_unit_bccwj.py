@@ -146,7 +146,11 @@ def fill_blank_files(conll_file, base_data, bccwj_conll_mapping, misc_mapping, e
                     ]), "名詞-数詞"
                 else:
                     assert len(bccwj_info) == 1
-                    cll[FORM], cll[LEMMA], cll[XPOS] = bccwj_info[0]["原文文字列"], get_origin(bccwj_info[0]), bccwj_info[0]["品詞"]
+                    cll[FORM], cll[LEMMA], cll[XPOS] = (
+                        bccwj_info[0]["原文文字列"],
+                        get_origin(bccwj_info[0]),
+                        (bccwj_info[0]["品詞"] + "-" + bccwj_info[0]["活用型"] if bccwj_info[0]["活用型"] != "" else bccwj_info[0]["品詞"])
+                    )
                     if cll[FORM] == "目　　　　　　　　次":
                         cll[FORM] = "目　次"
                 cll[FORM] = cll[FORM].strip("　")
