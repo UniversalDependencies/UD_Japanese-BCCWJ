@@ -1,0 +1,46 @@
+Running the following version of UD tools:
+commit 3478a99bb195eb8749c367af4f7b3fd357a12a4c
+Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
+Date:   Tue Nov 2 22:17:19 2021 +0100
+Evaluating the following revision of UD_Japanese-BCCWJ:
+commit c3b622d5cbef49f3e676de2b9b1c13a1c38230ba
+Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
+Date:   Wed Nov 3 14:48:27 2021 +0100
+Size: counted 1000000 of 1253903 words (nodes).
+Size: min(0, log((N/1000)**2)) = 13.8155105579643.
+Size: maximum value 13.815511 is for 1000000 words or more.
+Split: Found more than 10000 training words.
+Split: Found at least 10000 development words.
+Split: Found at least 10000 test words.
+Lemmas: '_' is the most frequent lemma.
+Universal POS tags: 17 out of 17 found in the corpus.
+Universal POS tags: source of annotation (from README) factor is 0.8.
+Features: 9072 out of 1253903 total words have one or more features.
+Features: source of annotation (from README) factor is 0.4.
+Universal relations: 26 out of 37 found in the corpus.
+Universal relations: source of annotation (from README) factor is 0.8.
+Udapi:
+               TOTAL     190342
+Udapi: found 190342 bugs.
+Udapi: worst expected case (threshold) is one bug per 10 words. There are 1253903 words.
+Genres: found 5 out of 17 known.
+Availability: README does not say Includes text: yes
+Availability: '_' is the most frequent form.
+validate.py --lang ja --max-err=10 UD_Japanese-BCCWJ/ja_bccwj-ud-dev.conllu
+*** PASSED ***
+validate.py --lang ja --max-err=10 UD_Japanese-BCCWJ/ja_bccwj-ud-test.conllu
+*** PASSED ***
+validate.py --lang ja --max-err=10 UD_Japanese-BCCWJ/ja_bccwj-ud-train.conllu
+*** PASSED ***
+Validity: 1
+(weight=0.0769230769230769) * (score{features}=0.12) = 0.00923076923076923
+(weight=0.0769230769230769) * (score{genres}=0.294117647058824) = 0.0226244343891403
+(weight=0.0769230769230769) * (score{lemmas}=0.01) = 0.000769230769230769
+(weight=0.256410256410256) * (score{size}=1) = 0.256410256410256
+(weight=0.0512820512820513) * (score{split}=1) = 0.0512820512820513
+(weight=0.0769230769230769) * (score{tags}=0.8) = 0.0615384615384615
+(weight=0.307692307692308) * (score{udapi}=0.01) = 0.00307692307692308
+(weight=0.0769230769230769) * (score{udeprels}=0.562162162162162) = 0.0432432432432432
+(TOTAL score=0.448175369940076) * (availability=0.1) * (validity=1) = 0.0448175369940076
+STARS = 0
+UD_Japanese-BCCWJ	0.0448175369940076	0
