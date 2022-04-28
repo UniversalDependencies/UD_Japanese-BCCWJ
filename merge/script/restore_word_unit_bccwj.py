@@ -54,16 +54,8 @@ def get_origin(bccwj):
     """
         convert UD LEMMA from Unidic lemma
     """
-    if RE_PROP_MATH.match(bccwj["品詞"]):
-        return bccwj["原文文字列"]
-    if RE_ASCII_MATH.match(bccwj["原文文字列"]):
-        return bccwj["原文文字列"]
     if bccwj["語彙素"] == "":
         return "_"
-    if bccwj["語彙素"] == "です":
-        return "だ"
-    if bccwj["語彙素"] in UNIDIC_ORIGIN_CONV:
-        return UNIDIC_ORIGIN_CONV[bccwj["語彙素"]]
     return bccwj["語彙素"]
 
 
@@ -79,7 +71,7 @@ def _convert_misc(conll, misc_data):
             continue
         if misc_data["label_bl_to_org"][key] in ["BunsetuPositionType", "LUWPOS", "UnidicInfo"]:
             value = misc_data["cont_bl_to_org"][misc_data["label_bl_to_org"][key]][int(value)]
-        if key in ["BPT", "LPOS", "BBIL", "LBIL", "UI"]:
+        if key in ["BPT", "LPOS", "BBIL", "LBIL", "UI", "PUDL"]:
             key = misc_data["label_bl_to_org"][key]
         nfes.append(key + "=" + str(value))
     return nfes
