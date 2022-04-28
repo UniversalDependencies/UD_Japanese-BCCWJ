@@ -6,6 +6,7 @@
 
 import pickle as pkl
 import itertools
+from typing import TextIO, Iterable, Optional
 
 COLCOUNT = 10
 ID, FORM, LEMMA, UPOS, XPOS, FEATS, HEAD, DEPREL, DEPS, MISC = range(COLCOUNT)
@@ -29,65 +30,48 @@ NUMBER_ORTH = {
     '０', '１', '２', '３', '４', '５', '６', '７', '８', '９',
 }
 
-def iterate_conll_and_bccwj(conll_st, bccwj_st):
-    """
-        iterate conll file and BCCWJ core file
-    """
-    nbccwj_pos = 0
-    for sent_st in conll_st:
-        # print(nbccwj_pos, sent_st[0], len(sent_st) - 2, len(bccwj_st[nbccwj_pos]))
-        # print("\n".join(["\t".join(t) for t in bccwj_st[nbccwj_pos]]))
-        if len(sent_st) - 2 == len(bccwj_st[nbccwj_pos]):
-            yield sent_st, bccwj_st[nbccwj_pos]
-            nbccwj_pos += 1
-            continue
-        nbbst = []
-        while nbccwj_pos < len(bccwj_st) and len(sent_st) - 2 > len(nbbst):
-            nbbst.extend(bccwj_st[nbccwj_pos])
-            nbccwj_pos += 1
-        # assert len(nbbst) == len(sent_st) - 2
-        yield sent_st, nbbst
 
-
-def separate_conll_sentence(conll_file, expand_sp=False):
+def separate_conll_sentence(conll_file: TextIO, expand_sp: bool=False) -> Iterable[list[list[str]]]:
     """
         separete conll by sentence
     """
-    cstack = []
+    cstack: list[list[str]] = []
     for line in conll_file:
         if line == "":
             yield cstack
             cstack = []
             continue
-        line = line.rstrip("\r\n").split("\t")
-        cstack.append(line)
-        if expand_sp and not line[0].startswith("#"):
+        items = line.rstrip("\r\n").split("\t")
+        cstack.append(items)
+        if expand_sp and not items[0].startswith("#"):
             yesno = [
-                s.split("=")[1] for s in line[MISC].split("|")
+                s.split("=")[1] for s in items[MISC].split("|")
                 if s.split("=")[0] == "SpaceAfter"
             ][0]
             if yesno == "Yes":
                 cstack.append(["　"] + ["_" for _ in range(COLCOUNT-1)])
 
 
-def sepacete_sentence_for_bccwj(bdoc, merge_num=True):
+def sepacete_sentence_for_bccwj(bdoc: list[dict[str, str]], merge_num: bool=True) -> list[list[list[dict[str, str]]]]:
     """
         separate bccwj core data to each sentence.
     """
-    nsent_lst, nsent, num_flag = [], [], False
+    nsent_lst: list[list[list[dict[str, str]]]] = []
+    nsent: list[list[dict[str, str]]] = []
+    num_flag: bool = False
     for rows in bdoc:
         if rows["文頭ラベル"] == "B":
             if len(nsent) > 0:
                 nsent_lst.append(nsent)
             nsent = []
             num_flag = False
-        if merge_num and (rows["品詞"] == "名詞-数詞" and rows["原文文字列"] in NUMBER_ORTH):
+        if merge_num and (rows["品詞"] == "名詞-数詞" and all([r in NUMBER_ORTH for r in rows["原文文字列"]])):
             if not num_flag:
                 nsent.append([])
                 num_flag = True
             nsent[-1].append(rows)
         elif merge_num and num_flag:
-            assert rows["品詞"] != "名詞-数詞" or rows["原文文字列"] not in NUMBER_ORTH
+            assert rows["品詞"] != "名詞-数詞" or not all([r in NUMBER_ORTH for r in rows["原文文字列"]])
             num_flag = False
             if rows["品詞"] != "空白":
                 nsent.append([rows])
@@ -99,7 +83,7 @@ def sepacete_sentence_for_bccwj(bdoc, merge_num=True):
     return nsent_lst
 
 
-def conv_doc_id(conll):
+def conv_doc_id(conll: str) -> str:
     """
         convert doc ID
     """
@@ -110,33 +94,36 @@ def conv_doc_id(conll):
         return "_".join(tid[1:])
 
 
-def load_bccwj_core_file(base_file_name, unit=None, load_pkl=False):
+def load_bccwj_core_file(base_file_name: str, unit: str="suw", load_pkl: bool=False) -> dict[str, list[list[dict[str, str]]]]:
     """
         load bccwj core data
     """
     if load_pkl:
-        return pkl.load(open(base_file_name + ".pkl", "rb"))
+        d: dict[str, list[list[dict[str, str]]]] = pkl.load(open(base_file_name + ".pkl", "rb"))
+        return d
     assert unit in ["suw", "luw"]
-    base_file_map = {}
+    nbase_file_map: dict[str, list[dict[str, str]]] = {}
+    base_file_map: dict[str, list[list[dict[str, str]]]] = {}
     with open(base_file_name, "r") as base_data:
-        for rows in base_data:
-            rows = dict(
-                zip({"suw": CORE_SUW_COLUMN, "luw": CORE_LUW_COLUMN}[unit], rows.rstrip("\n").split("\t"))
+        for line in base_data:
+            rows: dict[str, str] = dict(
+                zip({"suw": CORE_SUW_COLUMN, "luw": CORE_LUW_COLUMN}[unit], line.rstrip("\n").split("\t"))
             )
-            if rows["サンプルID"] not in base_file_map:
-                base_file_map[rows["サンプルID"]] = []
-            base_file_map[rows["サンプルID"]].append(rows)
-    for sample_id in base_file_map:
-        sent_bccwj = sepacete_sentence_for_bccwj(base_file_map[sample_id], merge_num=True)
+            if rows["サンプルID"] not in nbase_file_map:
+                nbase_file_map[rows["サンプルID"]] = []
+            nbase_file_map[rows["サンプルID"]].append(rows)
+    for sample_id in nbase_file_map:
+        sent_bccwj = sepacete_sentence_for_bccwj(nbase_file_map[sample_id], merge_num=True)
         base_file_map[sample_id] = list(itertools.chain.from_iterable(sent_bccwj))
     return base_file_map
 
 
-def separate_document(conll_file):
+def separate_document(conll_file: TextIO) -> Iterable[tuple[Optional[str], list[str]]]:
     """
         separete conll file by documents.
     """
-    bstack, tid, prev_tid = [], None, None
+    bstack: list[str] = []
+    tid, prev_tid = None, None
     line = next(conll_file).rstrip("\n")
     try:
         while True:
@@ -155,7 +142,7 @@ def separate_document(conll_file):
         yield prev_tid, bstack
 
 
-def is_spaceafter_yes(line):
+def is_spaceafter_yes(line: list[str]) -> bool:
     """
         SpaceAfter="Yes" extracted from line
     """
