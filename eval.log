@@ -1,11 +1,11 @@
 Running the following version of UD tools:
-commit 3478a99bb195eb8749c367af4f7b3fd357a12a4c
-Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
-Date:   Tue Nov 2 22:17:19 2021 +0100
+commit ba6fbf413cb14afa25145b931c79fb60ef9456e2
+Author: www-data (nschneid) <nschneid@github.com>
+Date:   Wed May 11 05:10:30 2022 +0200
 Evaluating the following revision of UD_Japanese-BCCWJ:
-commit c3b622d5cbef49f3e676de2b9b1c13a1c38230ba
+commit c385e0d69f42f81710486b5c2f8bdc848461d99c
+Merge: fecc6a6 7211b52
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
-Date:   Wed Nov 3 14:48:27 2021 +0100
 Size: counted 1000000 of 1253903 words (nodes).
 Size: min(0, log((N/1000)**2)) = 13.8155105579643.
 Size: maximum value 13.815511 is for 1000000 words or more.
@@ -15,13 +15,13 @@ Split: Found at least 10000 test words.
 Lemmas: '_' is the most frequent lemma.
 Universal POS tags: 17 out of 17 found in the corpus.
 Universal POS tags: source of annotation (from README) factor is 0.8.
-Features: 9072 out of 1253903 total words have one or more features.
+Features: 9078 out of 1253903 total words have one or more features.
 Features: source of annotation (from README) factor is 0.4.
 Universal relations: 26 out of 37 found in the corpus.
 Universal relations: source of annotation (from README) factor is 0.8.
 Udapi:
-               TOTAL     190342
-Udapi: found 190342 bugs.
+               TOTAL     190181
+Udapi: found 190181 bugs.
 Udapi: worst expected case (threshold) is one bug per 10 words. There are 1253903 words.
 Genres: found 5 out of 17 known.
 Availability: README does not say Includes text: yes
