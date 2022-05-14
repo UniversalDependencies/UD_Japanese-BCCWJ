@@ -54,16 +54,8 @@ def get_origin(bccwj):
     """
         convert UD LEMMA from Unidic lemma
     """
-    if RE_PROP_MATH.match(bccwj["品詞"]):
-        return bccwj["原文文字列"]
-    if RE_ASCII_MATH.match(bccwj["原文文字列"]):
-        return bccwj["原文文字列"]
     if bccwj["語彙素"] == "":
         return "_"
-    if bccwj["語彙素"] == "です":
-        return "だ"
-    if bccwj["語彙素"] in UNIDIC_ORIGIN_CONV:
-        return UNIDIC_ORIGIN_CONV[bccwj["語彙素"]]
     return bccwj["語彙素"]
 
 
@@ -77,9 +69,9 @@ def _convert_misc(conll, misc_data):
         if key == "SpaceAfter":
             nfes.append(key + "=" + str(value))
             continue
-        if misc_data["label_bl_to_org"][key] in ["BunsetuPositionType", "LUWPOS"]:
+        if misc_data["label_bl_to_org"][key] in ["BunsetuPositionType", "LUWPOS", "UnidicInfo"]:
             value = misc_data["cont_bl_to_org"][misc_data["label_bl_to_org"][key]][int(value)]
-        if key in ["BPT", "LPOS", "BBIL", "LBIL"]:
+        if key in ["BPT", "LPOS", "BBIL", "LBIL", "UI", "PUDL"]:
             key = misc_data["label_bl_to_org"][key]
         nfes.append(key + "=" + str(value))
     return nfes
@@ -213,7 +205,6 @@ def _main():
     parser.add_argument("conll_file", type=argparse.FileType("r"))
     parser.add_argument("bccwj_file_name", help="BCCWJ core file (core_*.txt)")
     parser.add_argument("bccwj_conll_mapping", type=argparse.FileType("rb"))
-
     parser.add_argument("-w", "--writer", type=argparse.FileType("w"), default="-")
     parser.add_argument(
         "-m", "--misc-file", type=argparse.FileType("rb"), default="./merged/misc_mapping.pkl"
