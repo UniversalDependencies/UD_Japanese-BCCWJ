@@ -39,31 +39,33 @@
     <feat name="Polarity" value="Neg" upos="AUX,NOUN,SCONJ">8860</feat><!-- _ -->
   </feats>
   <!-- Statistics of universal dependency relations. -->
-  <deps unique="26">
-    <dep name="acl">45447</dep>
+  <deps unique="28">
+    <dep name="acl">45449</dep>
     <dep name="advcl">48218</dep>
     <dep name="advmod">17909</dep>
     <dep name="amod">3177</dep>
     <dep name="appos">2</dep>
     <dep name="aux">94742</dep>
-    <dep name="case">246430</dep>
+    <dep name="case">246426</dep>
     <dep name="cc">5127</dep>
     <dep name="ccomp">2817</dep>
-    <dep name="compound">183918</dep>
+    <dep name="compound">183943</dep>
     <dep name="cop">15068</dep>
-    <dep name="csubj">1374</dep>
-    <dep name="dep">12470</dep>
+    <dep name="csubj">1357</dep>
+    <dep name="csubj:outer">30</dep>
+    <dep name="dep">12451</dep>
     <dep name="det">6053</dep>
-    <dep name="discourse">405</dep>
-    <dep name="dislocated">1266</dep>
-    <dep name="fixed">53414</dep>
+    <dep name="discourse">428</dep>
+    <dep name="dislocated">1</dep>
+    <dep name="fixed">53418</dep>
     <dep name="mark">63149</dep>
-    <dep name="nmod">86749</dep>
-    <dep name="nsubj">47369</dep>
+    <dep name="nmod">86725</dep>
+    <dep name="nsubj">46323</dep>
+    <dep name="nsubj:outer">2298</dep>
     <dep name="nummod">14533</dep>
     <dep name="obj">32803</dep>
-    <dep name="obl">67778</dep>
-    <dep name="punct">146559</dep>
+    <dep name="obl">67775</dep>
+    <dep name="punct">146555</dep>
     <dep name="reparandum">17</dep>
     <dep name="root">57109</dep>
   </deps>
