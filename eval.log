@@ -1,10 +1,10 @@
 Running the following version of UD tools:
-commit ba6fbf413cb14afa25145b931c79fb60ef9456e2
-Author: www-data (nschneid) <nschneid@github.com>
-Date:   Wed May 11 05:10:30 2022 +0200
+commit 13e6b709a8bc643c3f902800321a7beda46feb8d
+Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
+Date:   Sun Nov 13 22:03:41 2022 +0100
 Evaluating the following revision of UD_Japanese-BCCWJ:
-commit c385e0d69f42f81710486b5c2f8bdc848461d99c
-Merge: fecc6a6 7211b52
+commit 6f71ba58f16a95c119d9573451f7e12b2c3d2973
+Merge: d23854b 9a291cf
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
 Size: counted 1000000 of 1253903 words (nodes).
 Size: min(0, log((N/1000)**2)) = 13.8155105579643.
@@ -20,8 +20,8 @@ Features: source of annotation (from README) factor is 0.4.
 Universal relations: 26 out of 37 found in the corpus.
 Universal relations: source of annotation (from README) factor is 0.8.
 Udapi:
-               TOTAL     190181
-Udapi: found 190181 bugs.
+               TOTAL     191416
+Udapi: found 191416 bugs.
 Udapi: worst expected case (threshold) is one bug per 10 words. There are 1253903 words.
 Genres: found 5 out of 17 known.
 Availability: README does not say Includes text: yes
