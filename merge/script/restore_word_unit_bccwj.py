@@ -48,12 +48,14 @@ UNIDIC_ORIGIN_CONV = {
     "為さる": "なさる"
 }
 
-def get_origin(bccwj):
+def get_origin(bccwj: dict[str, str]) -> str:
     """
         Convert UD LEMMA from Unidic lemma
     """
     if bccwj["語彙素"] == "":
         return "_"
+    if bccwj["品詞"].startswith("名詞-固有名詞"):
+        return bccwj["原文文字列"]
     return bccwj["語彙素"]
 
 
@@ -93,7 +95,7 @@ def _divide_sentence(cnl, tid, bccwj_conll_mapping):
     return sentence_list
 
 
-def _expand_sentence(sent, bccwj_data):
+def _expand_sentence(sent, bccwj_data) -> str:
     sent_s = ""
     for conll, bccwj in sent[2:]:
         bpos, num_flag, num_pos = bccwj
@@ -112,7 +114,7 @@ def _expand_sentence(sent, bccwj_data):
 def fill_blank_files(
     conll_file, base_data, bccwj_conll_mapping,
     misc_mapping, error_files, writer
-):
+) -> None:
     """
         fill word by bccwj file
     """
