@@ -49,7 +49,7 @@
     <dep name="case">246426</dep>
     <dep name="cc">5127</dep>
     <dep name="ccomp">2817</dep>
-    <dep name="compound">183943</dep>
+    <dep name="compound">183944</dep>
     <dep name="cop">15068</dep>
     <dep name="csubj">1357</dep>
     <dep name="csubj:outer">30</dep>
@@ -57,7 +57,7 @@
     <dep name="det">6053</dep>
     <dep name="discourse">428</dep>
     <dep name="dislocated">1</dep>
-    <dep name="fixed">53418</dep>
+    <dep name="fixed">53417</dep>
     <dep name="mark">63149</dep>
     <dep name="nmod">86725</dep>
     <dep name="nsubj">46323</dep>
