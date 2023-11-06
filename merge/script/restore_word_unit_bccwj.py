@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
 
 """
-restore token from BCCWJ core file.
+Restore token from BCCWJ core file.
 """
 
 import argparse
-import string
-import re
 import pickle as pkl
-import functools
+import re
+import string
+from functools import partial
 
-from lib import (
-    separate_document, load_bccwj_core_file,
-    is_spaceafter_yes, FORM, ID, MISC, LEMMA, XPOS
-)
+from lib import (FORM, ID, LEMMA, MISC, XPOS, is_spaceafter_yes,
+                 load_bccwj_core_file, separate_document)
 
 RE_PROP_MATH = re.compile(".*固有名詞.*")
 RE_ASCII_MATH = re.compile('^[' + string.printable + ']+$')
@@ -50,12 +48,14 @@ UNIDIC_ORIGIN_CONV = {
     "為さる": "なさる"
 }
 
-def get_origin(bccwj):
+def get_origin(bccwj: dict[str, str]) -> str:
     """
-        convert UD LEMMA from Unidic lemma
+        Convert UD LEMMA from Unidic lemma
     """
     if bccwj["語彙素"] == "":
         return "_"
+    if bccwj["品詞"].startswith("名詞-固有名詞"):
+        return bccwj["原文文字列"]
     return bccwj["語彙素"]
 
 
@@ -66,7 +66,7 @@ def _convert_misc(conll, misc_data):
     nfes = []
     for item in conll[MISC].split("|"):
         key, value = item.split("=")
-        if key == "SpaceAfter":
+        if key in ("SpaceAfter", "SpacesAfter"):
             nfes.append(key + "=" + str(value))
             continue
         if misc_data["label_bl_to_org"][key] in ["BunsetuPositionType", "LUWPOS", "UnidicInfo"]:
@@ -78,7 +78,8 @@ def _convert_misc(conll, misc_data):
 
 
 def _divide_sentence(cnl, tid, bccwj_conll_mapping):
-    sentence_list, sent = [], []
+    sentence_list: list = []
+    sent: list = []
     for cpos, item in enumerate(cnl):
         if cpos not in bccwj_conll_mapping[tid]:
             assert item.startswith("# ") or item == ""
@@ -90,11 +91,11 @@ def _divide_sentence(cnl, tid, bccwj_conll_mapping):
         else:
             # bccwj_conll_mapping[tid][cpos] -> [bpos, num_flag, num_pos]
             sent.append((item, bccwj_conll_mapping[tid][cpos]))
-    assert sent == []
+    assert not sent
     return sentence_list
 
 
-def _expand_sentence(sent, bccwj_data):
+def _expand_sentence(sent, bccwj_data) -> str:
     sent_s = ""
     for conll, bccwj in sent[2:]:
         bpos, num_flag, num_pos = bccwj
@@ -110,7 +111,10 @@ def _expand_sentence(sent, bccwj_data):
     return "# text = {}\n".format(sent_s.strip("　"))
 
 
-def fill_blank_files(conll_file, base_data, bccwj_conll_mapping, misc_mapping, error_files, writer):
+def fill_blank_files(
+    conll_file, base_data, bccwj_conll_mapping,
+    misc_mapping, error_files, writer
+) -> None:
     """
         fill word by bccwj file
     """
@@ -141,7 +145,8 @@ def fill_blank_files(conll_file, base_data, bccwj_conll_mapping, misc_mapping, e
                     cll[FORM], cll[LEMMA], cll[XPOS] = (
                         bccwj_info[0]["原文文字列"],
                         get_origin(bccwj_info[0]),
-                        (bccwj_info[0]["品詞"] + "-" + bccwj_info[0]["活用型"] if bccwj_info[0]["活用型"] != "" else bccwj_info[0]["品詞"])
+                        (bccwj_info[0]["品詞"] + "-" + bccwj_info[0]["活用型"]\
+                            if bccwj_info[0]["活用型"] != "" else bccwj_info[0]["品詞"])
                     )
                     if cll[FORM] == "目　　　　　　　　次":
                         cll[FORM] = "目　次"
@@ -151,7 +156,8 @@ def fill_blank_files(conll_file, base_data, bccwj_conll_mapping, misc_mapping, e
 
 
 def _separete_conll_to_sent(conll):
-    sent_list, sent = [], []
+    sent_list: list = []
+    sent: list = []
     for line in conll:
         if line == "\n":
             sent_list.append(sent)
@@ -162,6 +168,7 @@ def _separete_conll_to_sent(conll):
 
 
 def load_error_file(error_file):
+    """ load error file """
     sent_list = _separete_conll_to_sent(error_file)
     errors = {}
     for snt in sent_list:
@@ -170,7 +177,9 @@ def load_error_file(error_file):
     return errors
 
 
-def _sentid(lst, order=[]):
+def _sentid(lst, order=None):
+    if order is None:
+        order = []
     if len(lst) == 1:
         sid, num = lst[0].rstrip("\n"), 1
     else:
@@ -183,13 +192,15 @@ def _sentid(lst, order=[]):
 
 
 def merge_remove_sentence(conll_file, error_sent, order_data):
+    """ Merge remove sentence """
     conll_sent_list = _separete_conll_to_sent(conll_file)
     conlls = {}
     for snt in conll_sent_list:
         sent_id = tuple(snt[0].split(" ")[-1].split("-"))
         conlls[sent_id] = snt
     result = []
-    for sid in sorted(list(conlls.keys()) + list(error_sent.keys()), key=functools.partial(_sentid, order=order_data)):
+    sids = list(conlls.keys()) + list(error_sent.keys())
+    for sid in sorted(sids, key=partial(_sentid, order=order_data)):
         if sid in error_sent:
             for ccc in error_sent[sid]:
                 result.append(ccc)
@@ -200,7 +211,7 @@ def merge_remove_sentence(conll_file, error_sent, order_data):
     return result
 
 
-def _main():
+def _main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("conll_file", type=argparse.FileType("r"))
     parser.add_argument("bccwj_file_name", help="BCCWJ core file (core_*.txt)")
