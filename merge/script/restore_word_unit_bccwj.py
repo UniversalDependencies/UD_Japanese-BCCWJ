@@ -9,6 +9,7 @@ import pickle as pkl
 import re
 import string
 from functools import partial
+from typing import Optional, TextIO
 
 from lib import (FORM, ID, LEMMA, MISC, XPOS, is_spaceafter_yes,
                  load_bccwj_core_file, separate_document)
@@ -155,7 +156,7 @@ def fill_blank_files(
             writer.write("\n")
 
 
-def _separete_conll_to_sent(conll):
+def _separete_conll_to_sent(conll: TextIO):
     sent_list: list = []
     sent: list = []
     for line in conll:
@@ -167,19 +168,9 @@ def _separete_conll_to_sent(conll):
     return sent_list
 
 
-def load_error_file(error_file):
-    """ load error file """
-    sent_list = _separete_conll_to_sent(error_file)
-    errors = {}
-    for snt in sent_list:
-        sent_id = tuple(snt[0].split(" ")[-1].split("-"))
-        errors[sent_id] = snt
-    return errors
-
-
-def _sentid(lst, order=None):
+def _sentid(lst, order: Optional[dict]=None) -> tuple:
     if order is None:
-        order = []
+        order = {}
     if len(lst) == 1:
         sid, num = lst[0].rstrip("\n"), 1
     else:
@@ -191,7 +182,7 @@ def _sentid(lst, order=None):
     return order[sid], int(num)
 
 
-def merge_remove_sentence(conll_file, error_sent, order_data):
+def merge_remove_sentence(conll_file, error_sent: dict, order_data: dict):
     """ Merge remove sentence """
     conll_sent_list = _separete_conll_to_sent(conll_file)
     conlls = {}
