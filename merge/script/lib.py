@@ -1,12 +1,9 @@
-# -*- coding: utf-8 -*-
-
-"""
-    shared function
-"""
+"""Shared function"""
 
 import itertools
 import pickle as pkl
-from typing import Iterable, Optional, TextIO
+from collections.abc import Iterable
+from typing import TextIO
 
 COLCOUNT = 10
 ID, FORM, LEMMA, UPOS, XPOS, FEATS, HEAD, DEPREL, DEPS, MISC = range(COLCOUNT)
@@ -31,7 +28,8 @@ NUMBER_ORTH = {
 }
 
 
-def separate_conll_sentence(conll_file: TextIO, expand_sp: bool=False) -> Iterable[list[list[str]]]:
+def separate_conll_sentence(
+    conll_file: TextIO, expand_sp: bool=False) -> Iterable[list[list[str]]]:
     """
         separete conll by sentence
     """
@@ -67,13 +65,15 @@ def sepacete_sentence_for_bccwj(
                 nsent_lst.append(nsent)
             nsent = []
             num_flag = False
-        if merge_num and (rows["品詞"] == "名詞-数詞" and all([r in NUMBER_ORTH for r in rows["原文文字列"]])):
+        if merge_num and (rows["品詞"] == "名詞-数詞" and all(
+            r in NUMBER_ORTH for r in rows["原文文字列"])):
             if not num_flag:
                 nsent.append([])
                 num_flag = True
             nsent[-1].append(rows)
         elif merge_num and num_flag:
-            assert rows["品詞"] != "名詞-数詞" or not all([r in NUMBER_ORTH for r in rows["原文文字列"]])
+            assert rows["品詞"] != "名詞-数詞" or not all(
+                r in NUMBER_ORTH for r in rows["原文文字列"])
             num_flag = False
             if rows["品詞"] != "空白":
                 nsent.append([rows])
@@ -108,11 +108,12 @@ def load_bccwj_core_file(
     assert unit in ["suw", "luw"]
     nbase_file_map: dict[str, list[dict[str, str]]] = {}
     base_file_map: dict[str, list[list[dict[str, str]]]] = {}
-    with open(base_file_name, "r", encoding="utf-8") as base_data:
+    with open(base_file_name, encoding="utf-8") as base_data:
         for line in base_data:
             rows: dict[str, str] = dict(
-                zip({"suw": CORE_SUW_COLUMN,
-                     "luw": CORE_LUW_COLUMN}[unit], line.rstrip("\n").split("\t"))
+                zip({"suw": CORE_SUW_COLUMN, "luw": CORE_LUW_COLUMN}[unit],
+                    line.rstrip("\n").split("\t"),
+                    strict=True)
             )
             if rows["サンプルID"] not in nbase_file_map:
                 nbase_file_map[rows["サンプルID"]] = []
@@ -123,7 +124,7 @@ def load_bccwj_core_file(
     return base_file_map
 
 
-def separate_document(conll_file: TextIO) -> Iterable[tuple[Optional[str], list[str]]]:
+def separate_document(conll_file: TextIO) -> Iterable[tuple[str | None, list[str]]]:
     """
         separete conll file by documents.
     """
