@@ -113,6 +113,7 @@ Changelog
 Data available since: UD v2.2
 License: CC BY-NC-SA 4.0
 Includes text: no
+Parallel: no
 Genre: news nonfiction fiction blog web
 Lemmas: not available
 UPOS: converted from manual

@@ -16,15 +16,15 @@
   <!-- Statistics of universal POS tags. The comments show the most frequent lemmas. -->
   <tags unique="17">
     <tag name="ADJ">26812</tag><!-- _ -->
-    <tag name="ADP">251140</tag><!-- _ -->
+    <tag name="ADP">251092</tag><!-- _ -->
     <tag name="ADV">18943</tag><!-- _ -->
-    <tag name="AUX">122189</tag><!-- _ -->
-    <tag name="CCONJ">5110</tag><!-- _ -->
-    <tag name="DET">6057</tag><!-- _ -->
+    <tag name="AUX">122133</tag><!-- _ -->
+    <tag name="CCONJ">5212</tag><!-- _ -->
+    <tag name="DET">6468</tag><!-- _ -->
     <tag name="INTJ">915</tag><!-- _ -->
-    <tag name="NOUN">366690</tag><!-- _ -->
+    <tag name="NOUN">366279</tag><!-- _ -->
     <tag name="NUM">38937</tag><!-- _ -->
-    <tag name="PART">14834</tag><!-- _ -->
+    <tag name="PART">14836</tag><!-- _ -->
     <tag name="PRON">11340</tag><!-- _ -->
     <tag name="PROPN">35938</tag><!-- _ -->
     <tag name="PUNCT">146577</tag><!-- _ -->
@@ -39,34 +39,35 @@
     <feat name="Polarity" value="Neg" upos="AUX,NOUN,SCONJ">8860</feat><!-- _ -->
   </feats>
   <!-- Statistics of universal dependency relations. -->
-  <deps unique="28">
-    <dep name="acl">45452</dep>
-    <dep name="advcl">48213</dep>
-    <dep name="advmod">17908</dep>
+  <deps unique="29">
+    <dep name="acl">45348</dep>
+    <dep name="advcl">46952</dep>
+    <dep name="advmod">17901</dep>
     <dep name="amod">3177</dep>
     <dep name="appos">2</dep>
-    <dep name="aux">94742</dep>
-    <dep name="case">246387</dep>
-    <dep name="cc">5127</dep>
+    <dep name="aux">94750</dep>
+    <dep name="case">246455</dep>
+    <dep name="cc">5228</dep>
     <dep name="ccomp">2817</dep>
-    <dep name="compound">183942</dep>
+    <dep name="compound">183370</dep>
     <dep name="cop">15068</dep>
-    <dep name="csubj">1356</dep>
-    <dep name="csubj:outer">30</dep>
-    <dep name="dep">12467</dep>
-    <dep name="det">6053</dep>
-    <dep name="discourse">428</dep>
+    <dep name="csubj">1339</dep>
+    <dep name="csubj:outer">28</dep>
+    <dep name="dep">11940</dep>
+    <dep name="det">6464</dep>
+    <dep name="discourse">430</dep>
     <dep name="dislocated">1</dep>
-    <dep name="fixed">53459</dep>
-    <dep name="mark">63147</dep>
-    <dep name="nmod">86717</dep>
-    <dep name="nsubj">46318</dep>
-    <dep name="nsubj:outer">2301</dep>
-    <dep name="nummod">14533</dep>
-    <dep name="obj">32802</dep>
-    <dep name="obl">67775</dep>
-    <dep name="punct">146555</dep>
-    <dep name="reparandum">17</dep>
+    <dep name="fixed">53670</dep>
+    <dep name="iobj">56</dep>
+    <dep name="mark">63150</dep>
+    <dep name="nmod">81549</dep>
+    <dep name="nsubj">46329</dep>
+    <dep name="nsubj:outer">2638</dep>
+    <dep name="nummod">14583</dep>
+    <dep name="obj">32576</dep>
+    <dep name="obl">74405</dep>
+    <dep name="punct">146552</dep>
+    <dep name="reparandum">16</dep>
     <dep name="root">57109</dep>
   </deps>
 </treebank>
