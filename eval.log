@@ -1,11 +1,15 @@
 Running the following version of UD tools:
-commit ecbbdff44b15c9b6de4a691e3499c1286459ab2e
+commit 26e6c87a2f518322d15901a351199b6be6569062
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
-Date:   Fri May 9 21:07:42 2025 +0200
+Date:   Fri Nov 7 15:39:58 2025 +0100
 Evaluating the following revision of UD_Japanese-BCCWJ:
-commit b6435000156a3b763665bf09dc31f63c0ccbcbc9
+commit e3db2e383bba9f677c423e5a40fc81c0fbbc207c
+Merge: fb16a38 fce44a1
 Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
-Date:   Mon Nov 11 15:57:10 2024 +0100
+CoNLL-U data file regular expression = '(.+)-ud-(train|dev|test)\.conllu'
+Language-treebank code (from CoNLL-U file name) = 'ja_bccwj'
+Language code (from CoNLL-U file name) = 'ja'
+Found the following data files: ja_bccwj-ud-dev.conllu, ja_bccwj-ud-test.conllu, ja_bccwj-ud-train.conllu
 Size: counted 1000000 of 1253903 words (nodes).
 Size: min(0, log((N/1000)**2)) = 13.8155105579643.
 Size: maximum value 13.815511 is for 1000000 words or more.
@@ -17,66 +21,61 @@ Universal POS tags: 17 out of 17 found in the corpus.
 Universal POS tags: source of annotation (from README) factor is 0.8.
 Features: 9078 out of 1253903 total words have one or more features.
 Features: source of annotation (from README) factor is 0.4.
-Universal relations: 26 out of 37 found in the corpus.
+Universal relations: 27 out of 37 found in the corpus.
 Universal relations: source of annotation (from README) factor is 0.8.
-Udapi:
-               TOTAL     189041
-Udapi: found 189041 bugs.
-Udapi: worst expected case (threshold) is one bug per 10 words. There are 1253903 words.
 Genres: found 5 out of 18 known.
 Availability: README does not say Includes text: yes
 Availability: '_' is the most frequent form.
 /net/work/people/zeman/unidep/tools/validate.py --lang ja --max-err=10 UD_Japanese-BCCWJ/ja_bccwj-ud-dev.conllu
-[Line 48 Sent A009p_OW6X_00012-4 Node 4]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 125 Sent A009p_OW6X_00012-6 Node 17]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 138 Sent A009p_OW6X_00012-7 Node 5]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 167 Sent A009p_OW6X_00012-7 Node 34]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 184 Sent A009p_OW6X_00012-8 Node 7]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 204 Sent A009p_OW6X_00012-8 Node 27]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 257 Sent A009p_OW6X_00012-10 Node 13]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 278 Sent A009p_OW6X_00012-11 Node 3]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 292 Sent A009p_OW6X_00012-11 Node 17]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 297 Sent A009p_OW6X_00012-11 Node 22]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 48 Sent A009p_OW6X_00012-4]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
+[Line 114 Sent A009p_OW6X_00012-6]: [L3 Warning obl-should-be-nmod] The parent (node [13] '_') is a nominal (and not a predicate), hence the relation should be 'nmod', not 'obl'.
+[Line 125 Sent A009p_OW6X_00012-6]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 138 Sent A009p_OW6X_00012-7]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
+[Line 167 Sent A009p_OW6X_00012-7]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
+[Line 184 Sent A009p_OW6X_00012-8]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 204 Sent A009p_OW6X_00012-8]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
+[Line 232 Sent A009p_OW6X_00012-9]: [L3 Warning obl-should-be-nmod] The parent (node [21] '_') is a nominal (and not a predicate), hence the relation should be 'nmod', not 'obl'.
+[Line 234 Sent A009p_OW6X_00012-9]: [L3 Warning pron-det-without-prontype] The word '_' is tagged 'DET' but it lacks the 'PronType' feature
+[Line 257 Sent A009p_OW6X_00012-10]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
 ...suppressing further errors regarding Warning
-Warnings: 6525
+Warnings: 10300
 *** PASSED ***
 /net/work/people/zeman/unidep/tools/validate.py --lang ja --max-err=10 UD_Japanese-BCCWJ/ja_bccwj-ud-test.conllu
-[Line 22 Sent OC01_00001-2 Node 6]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 51 Sent OC01_00001-4 Node 3]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 137 Sent OW6X_00000-4 Node 29]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 171 Sent OW6X_00000-4 Node 63]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 224 Sent OW6X_00000-5 Node 33]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 348 Sent OW6X_00000-6 Node 14]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 362 Sent OW6X_00000-6 Node 28]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 377 Sent OW6X_00000-6 Node 43]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 415 Sent OW6X_00000-7 Node 24]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 427 Sent OW6X_00000-7 Node 36]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 17 Sent OC01_00001-2]: [L3 Warning obl-should-be-nmod] The parent (node [3] '_') is a nominal (and not a predicate), hence the relation should be 'nmod', not 'obl'.
+[Line 22 Sent OC01_00001-2]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 30 Sent OC01_00001-3]: [L3 Warning obl-should-be-nmod] The parent (node [3] '_') is a nominal (and not a predicate), hence the relation should be 'nmod', not 'obl'.
+[Line 51 Sent OC01_00001-4]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 63 Sent OC01_00001-5]: [L3 Warning pron-det-without-prontype] The word '_' is tagged 'PRON' but it lacks the 'PronType' feature
+[Line 137 Sent OW6X_00000-4]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
+[Line 153 Sent OW6X_00000-4]: [L3 Warning obl-should-be-nmod] The parent (node [47] '_') is a nominal (and not a predicate), hence the relation should be 'nmod', not 'obl'.
+[Line 171 Sent OW6X_00000-4]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 224 Sent OW6X_00000-5]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 347 Sent OW6X_00000-6]: [L3 Warning obl-should-be-nmod] The parent (node [18] '_') is a nominal (and not a predicate), hence the relation should be 'nmod', not 'obl'.
 ...suppressing further errors regarding Warning
-Warnings: 5793
+Warnings: 9176
 *** PASSED ***
 /net/work/people/zeman/unidep/tools/validate.py --lang ja --max-err=10 UD_Japanese-BCCWJ/ja_bccwj-ud-train.conllu
-[Line 19 Sent B018p_OW6X_00019-2 Node 7]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 29 Sent B018p_OW6X_00019-2 Node 17]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
-[Line 36 Sent B018p_OW6X_00019-2 Node 24]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 51 Sent B018p_OW6X_00019-2 Node 39]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 73 Sent B018p_OW6X_00019-2 Node 61]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 113 Sent B018p_OW6X_00019-3 Node 35]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 118 Sent B018p_OW6X_00019-3 Node 40]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 141 Sent B018p_OW6X_00019-4 Node 18]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 151 Sent B018p_OW6X_00019-4 Node 28]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
-[Line 184 Sent B018p_OW6X_00019-4 Node 61]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 19 Sent B018p_OW6X_00019-2]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 29 Sent B018p_OW6X_00019-2]: [L3 Warning fixed-without-extpos] Fixed expression '_ _ _' does not have the 'ExtPos' feature
+[Line 36 Sent B018p_OW6X_00019-2]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 51 Sent B018p_OW6X_00019-2]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 73 Sent B018p_OW6X_00019-2]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 104 Sent B018p_OW6X_00019-3]: [L3 Warning obl-should-be-nmod] The parent (node [32] '_') is a nominal (and not a predicate), hence the relation should be 'nmod', not 'obl'.
+[Line 113 Sent B018p_OW6X_00019-3]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 118 Sent B018p_OW6X_00019-3]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 124 Sent B018p_OW6X_00019-4]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
+[Line 141 Sent B018p_OW6X_00019-4]: [L3 Warning fixed-without-extpos] Fixed expression '_ _' does not have the 'ExtPos' feature
 ...suppressing further errors regarding Warning
-Warnings: 29481
+Warnings: 45684
 *** PASSED ***
 Validity: 1
-(weight=0.0769230769230769) * (score{features}=0.12) = 0.00923076923076923
-(weight=0.0769230769230769) * (score{genres}=0.277777777777778) = 0.0213675213675214
-(weight=0.0769230769230769) * (score{lemmas}=0.01) = 0.000769230769230769
-(weight=0.256410256410256) * (score{size}=1) = 0.256410256410256
-(weight=0.0512820512820513) * (score{split}=1) = 0.0512820512820513
-(weight=0.0769230769230769) * (score{tags}=0.8) = 0.0615384615384615
-(weight=0.307692307692308) * (score{udapi}=0.01) = 0.00307692307692308
-(weight=0.0769230769230769) * (score{udeprels}=0.562162162162162) = 0.0432432432432432
-(TOTAL score=0.446918456918457) * (availability=0.1) * (validity=1) = 0.0446918456918457
-STARS = 0
-UD_Japanese-BCCWJ	0.0446918456918457	0
+(weight=0.111111111111111) * (score{features}=0.12) = 0.0133333333333333
+(weight=0.111111111111111) * (score{genres}=0.277777777777778) = 0.0308641975308642
+(weight=0.111111111111111) * (score{lemmas}=0.01) = 0.00111111111111111
+(weight=0.37037037037037) * (score{size}=1) = 0.37037037037037
+(weight=0.0740740740740741) * (score{split}=1) = 0.0740740740740741
+(weight=0.111111111111111) * (score{tags}=0.8) = 0.0888888888888889
+(weight=0.111111111111111) * (score{udeprels}=0.583783783783784) = 0.0648648648648649
+(TOTAL score=0.643506840173507) * (availability=0.1) * (validity=1) = 0.0643506840173507
+STARS = 0.5
+UD_Japanese-BCCWJ	0.0643506840173507	0.5
